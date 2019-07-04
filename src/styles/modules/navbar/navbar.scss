@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #fff;
+  padding: 0 0 2rem 0rem;
+}
+
+.left-nav {
+  margin-top: 1rem;
+  list-style: none;
+  height: 0;
+  li {
+    display: inline;
+    margin-left: 2rem;
+  }
+  a {
+    &:visited,
+    &:link,
+    &:focus {
+      color: $primaryColor;
+    }
+  }
+}

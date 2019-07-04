@@ -1,0 +1,25 @@
+.customeSearch {
+  visibility: visible;
+  display: inline-block;
+  border: none;
+  outline: none;
+  width: 30rem;
+  background-color: #f8f9fc !important;
+  padding: 0.3rem;
+  border-radius: 5px;
+  z-index: 999;
+  &:focus {
+    border-bottom: 1px solid #ccc;
+    box-shadow: 1px 5px 5px 1px rgba(58, 59, 69, 0.15) !important;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 10rem;
+}
+
+.hide {
+  visibility: hidden;
+}
