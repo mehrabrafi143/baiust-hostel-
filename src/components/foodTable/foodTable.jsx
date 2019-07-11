@@ -2,17 +2,49 @@ import React, { Component } from "react";
 import Table from "./../table/table";
 import { GetFoodItems } from "../../service/FoodItemServices/foodItemServices";
 import { DeleteItem } from "./../../service/FoodItemServices/foodItemServices";
-
+import Pagination from "./../pagination/pagination";
+import Paginate from "./../common/paginate/paginate";
+import _ from "lodash";
+import SearchBox from "../form-elements/search";
 class FoodItemTable extends Component {
   state = {
-    data: []
+    data: [],
+    pageSize: 8,
+    currentPage: 1,
+    currentOrder: {
+      name: "name",
+      order: "asc"
+    },
+    query: ""
   };
 
   headerNames = [
     { label: "Food Name", path: "name" },
     { label: "Price/Kg", path: "pricePerKg" },
     { label: "People/Kg", path: "peoplePerKg" },
-    { label: "Price/Head", path: "pricePerHead" }
+    { label: "Price/Head", path: "pricePerHead" },
+    {
+      key: "delete",
+      content: item => (
+        <span
+          className="btn btn-danger hover"
+          onClick={() => this.handelDelete(item)}
+        >
+          Delete
+        </span>
+      )
+    },
+    {
+      key: "update",
+      content: item => (
+        <span
+          className="btn btn-primary hover"
+          onClick={() => this.redirectTo(item)}
+        >
+          Update
+        </span>
+      )
+    }
   ];
 
   handelDelete = async item => {
@@ -29,7 +61,7 @@ class FoodItemTable extends Component {
   };
 
   redirectTo = item => {
-    this.props.history.push("/admin/add-food/" + item.id);
+    this.props.history.push("/admin/addfood/" + item.id);
   };
 
   async componentDidMount() {
@@ -41,21 +73,55 @@ class FoodItemTable extends Component {
     }
   }
 
+  handelQuery = e => {
+    const query = e.currentTarget.value;
+    this.setState({ query, currentPage: 1 });
+  };
+
+  handelOrder = path => {
+    const currentOrder = { ...this.state.currentOrder };
+    if (currentOrder.name === path && currentOrder.order === "asc")
+      currentOrder.order = "desc";
+    else currentOrder.order = "asc";
+
+    currentOrder.name = path;
+
+    this.setState({ currentOrder });
+  };
+
+  handelPageChange = pagenum => {
+    this.setState({ currentPage: pagenum });
+  };
+
   render() {
+    const { pageSize, data, currentPage, currentOrder, query } = this.state;
+
+    let item = query.trim()
+      ? data.filter(f =>
+          f.name.toLowerCase().includes(query.toLowerCase().trim())
+        )
+      : data;
+
+    const count = item.length;
+
+    const food = Paginate(item, pageSize, currentPage);
+    const filterdFood = _.orderBy(food, currentOrder.name, currentOrder.order);
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-1" />
-          <div className="col">
-            <h2 className="section-title">Food Items</h2>
-            <Table
-              headerNames={this.headerNames}
-              onDelete={this.handelDelete}
-              data={this.state.data}
-              redirectTo={this.redirectTo}
-            />
-          </div>
-        </div>
+      <div className="form section-card">
+        <SearchBox onQuery={this.handelQuery} query={query} />
+        <Table
+          headerNames={this.headerNames}
+          onDelete={this.handelDelete}
+          data={filterdFood}
+          redirectTo={this.redirectTo}
+          orderBy={this.handelOrder}
+        />
+        <Pagination
+          onPageChange={this.handelPageChange}
+          pageSize={pageSize}
+          count={count}
+          currentPage={currentPage}
+        />
       </div>
     );
   }

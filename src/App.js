@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/style.scss";
 import MainNavBar from "./components/mainNavBar/mainnavbar";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import { Route, Switch, Redirect } from "react-router-dom";

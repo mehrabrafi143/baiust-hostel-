@@ -7,3 +7,34 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.hover {
+  cursor: pointer;
+}
+
+.section-card {
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+  top: -100px;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  padding: 2rem;
+  height: 500px;
+}
+
+.hide {
+  display: none;
+  text-indent: -999;
+}
+.show {
+  display: block;
+  text-indent: 0;
+}

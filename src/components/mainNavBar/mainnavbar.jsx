@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const MainNavBar = () => {
   return (
@@ -8,12 +8,12 @@ const MainNavBar = () => {
       <div className="col-4 center" />
       <ul className="col-4 left-nav">
         <li>
-          <a href="#">
+          <Link to="">
             <i className="fa fa-globe" />
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">Hellow User Name</a>
+          <Link to="">Hellow User Name</Link>
         </li>
         <li>
           <NavLink to="/registration">Register</NavLink>

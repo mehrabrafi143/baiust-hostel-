@@ -1,11 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
-const TableHead = ({ headerNames }) => {
+const TableHead = ({ headerNames, orderBy }) => {
   return (
     <thead>
       <tr>
         {headerNames.map(header => (
-          <th key={header.label}> {header.label} </th>
+          <th
+            key={header.label || header.key}
+            onClick={() => orderBy(header.path)}
+          >
+            {header.label}
+          </th>
         ))}
       </tr>
     </thead>

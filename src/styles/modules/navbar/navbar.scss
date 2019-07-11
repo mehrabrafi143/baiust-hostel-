@@ -1,12 +1,16 @@
 .navbar {
-  background-color: #fff;
+  background: linear-gradient(90deg, #0c2646 0, #204065 60%, #2a5788);
   padding: 0 0 2rem 0rem;
+  height: 168px;
+  position: relative;
+  right: 0;
 }
 
 .left-nav {
-  margin-top: 1rem;
+  position: absolute;
+  top: 17px;
+  right: 10px;
   list-style: none;
-  height: 0;
   li {
     display: inline;
     margin-left: 2rem;
@@ -15,7 +19,8 @@
     &:visited,
     &:link,
     &:focus {
-      color: $primaryColor;
+      color: #ffffff;
+      font-size: 0.8571em;
     }
   }
 }

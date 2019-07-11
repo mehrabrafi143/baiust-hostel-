@@ -1,24 +1,19 @@
 import React from "react";
+import _ from "lodash";
 
-const TableBody = ({ data, onDelete, redirectTo }) => {
+const TableBody = ({ data, headerNames }) => {
+  const renderData = (item, hN) => {
+    if (hN.content) return hN.content(item);
+
+    return _.get(item, hN.path) || "N/A";
+  };
   return (
     <tbody>
       {data.map(item => (
         <tr key={item.id}>
-          <td>{item.name}</td>
-          <td>{item.pricePerKg || "N/A"}</td>
-          <td>{item.peoplePerKg || "N/A"}</td>
-          <td>{item.pricePerHead || "N/A"}</td>
-          <td>
-            <span className="btn btn-danger" onClick={() => onDelete(item)}>
-              Delete
-            </span>
-          </td>
-          <td>
-            <span className="btn btn-primary" onClick={() => redirectTo(item)}>
-              Update
-            </span>
-          </td>
+          {headerNames.map(hN => (
+            <td key={hN.label || hN.key}> {renderData(item, hN)} </td>
+          ))}
         </tr>
       ))}
     </tbody>

@@ -6,11 +6,16 @@ class Table extends Component {
   state = {};
 
   render() {
-    const { headerNames, data, onDelete, redirectTo } = this.props;
+    const { headerNames, data, onDelete, redirectTo, orderBy } = this.props;
     return (
       <table className="table mt-4">
-        <TableHead headerNames={headerNames} />
-        <TableBody onDelete={onDelete} data={data} redirectTo={redirectTo} />
+        <TableHead headerNames={headerNames} orderBy={orderBy} />
+        <TableBody
+          headerNames={headerNames}
+          onDelete={onDelete}
+          data={data}
+          redirectTo={redirectTo}
+        />
       </table>
     );
   }

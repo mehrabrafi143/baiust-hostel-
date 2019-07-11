@@ -11,6 +11,10 @@ export function GetFoodItems() {
   return http.get(api);
 }
 
+export function GetFoodItem(id) {
+  return http.get(api + "/" + id);
+}
+
 export function DeleteItem(id) {
   return http.delete(api + "/" + id);
 }
