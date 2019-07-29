@@ -1,0 +1,19 @@
+.section {
+  &-title {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    a:link,
+    a:hover,
+    a:visited,
+    a:focus {
+      text-decoration: none;
+      color: #0069d9;
+    }
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      letter-spacing: 4px;
+      text-decoration: none;
+    }
+  }
+}

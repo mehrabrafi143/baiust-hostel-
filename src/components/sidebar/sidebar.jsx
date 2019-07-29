@@ -11,7 +11,7 @@ class Sidebar extends Component {
         child: [],
         icon: "fa fa-home",
         show: false,
-        to: "/admin"
+        to: "/admin/dashboard"
       },
       {
         name: "Account Information",
@@ -23,21 +23,29 @@ class Sidebar extends Component {
         name: "Student Information",
         icon: "fa fa-info",
         child: [
-          { name: "Register Student", icon: "fa fa-user" },
-          { name: "Students List", icon: "fa fa-list" }
+          {
+            name: "Students List",
+            icon: "fa fa-list",
+            to: "/admin/studentlist"
+          },
+          {
+            name: "Register Student",
+            icon: "fa fa-user",
+            to: "/admin/addstudent"
+          }
         ],
         show: false,
-        to: ""
+        to: "/admin/student"
       },
       {
         name: "Food Menu",
         icon: "fa fa-list-alt",
         child: [
-          { name: "Add Menu", icon: "fa fa-plus-circle" },
-          { name: "Menu List", icon: "fa fa-list" }
+          { name: "Menu List", icon: "fa fa-list", to: "/admin/foodmenu" },
+          { name: "Add Menu", icon: "fa fa-plus-circle", to: "/admin/addmenu" }
         ],
         show: false,
-        to: ""
+        to: "/admin/foodmenu"
       },
       {
         name: "Food Item",
@@ -73,7 +81,7 @@ class Sidebar extends Component {
         </div>
         <ul>
           {this.state.navItem.map(i => (
-            <NavIem key={i.id} item={i} showItem={this.handelShow} />
+            <NavIem key={i.name} item={i} showItem={this.handelShow} />
           ))}
         </ul>
       </div>

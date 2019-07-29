@@ -12,7 +12,7 @@ const NavIem = ({ item, showItem }) => {
           {hasChild ? (
             <i
               onClick={() => showItem(item)}
-              class="fa fa-plus-square-o"
+              className="fa fa-plus-square-o"
               aria-hidden="true"
             />
           ) : null}

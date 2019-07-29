@@ -2,6 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "../form/form";
 import { registration } from "../../service/authService/authService";
+import Loader from "react-loader-spinner";
 
 class RegistrationForm extends Form {
   state = {
@@ -14,7 +15,8 @@ class RegistrationForm extends Form {
       email: "",
       password: "",
       confirmPassword: ""
-    }
+    },
+    loader: false
   };
 
   schema = {
@@ -34,20 +36,29 @@ class RegistrationForm extends Form {
   };
 
   dosubmit = async () => {
+    this.setState({ loader: true });
     try {
-      await registration(this.state.data);
+      const { data } = await registration(this.state.data);
+      this.props.history.push("/admin/studentform/" + data);
     } catch (error) {
       this.ShowServerErrors(error);
     }
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loader } = this.state;
 
     return (
       <div className="container mt-4">
         <div className="row">
           <div className="col-6">
+            {loader ? (
+              <div className="full-body">
+                <div className="center">
+                  <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
+                </div>
+              </div>
+            ) : null}
             <h2> Registration Form </h2>
             <p className="form-text text-danger">{this.state.genericErrors}</p>
             <form className="form" onSubmit={this.handelSubmit}>

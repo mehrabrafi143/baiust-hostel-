@@ -1,0 +1,96 @@
+.card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  margin-left: 3.5rem;
+  margin-top: 2rem;
+  height: 25rem;
+  border-radius: 1rem;
+  &-md {
+    width: 25rem;
+  }
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &-header {
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 87%);
+    background: linear-gradient(90deg, #0c2646 0, #204065 60%, #224c79);
+    height: 15rem;
+    color: #ffffff;
+    position: relative;
+    &__title {
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-weight: 200;
+      span {
+        display: block;
+        margin-top: 1rem;
+        font-weight: 500;
+      }
+      a {
+        &:link,
+        &:visited,
+        &:active,
+        &:focus {
+          color: #fff;
+        }
+      }
+    }
+    & > .right-icon {
+      position: absolute;
+      top: 1rem;
+      font-size: 1.5rem;
+      right: 1rem;
+      font-weight: 100;
+    }
+  }
+
+  &-list {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  &__model {
+    background: #fff;
+    width: 8rem;
+    text-align: center;
+    color: black;
+    position: absolute;
+    height: 8rem;
+    right: -0.5rem;
+    border-radius: 3px;
+    a {
+      &:link,
+      &:visited {
+        text-transform: capitalize;
+        margin-top: 1rem;
+        color: black;
+        display: block;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &-icon {
+    background: transparent;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    padding: 1.3rem;
+    i {
+      @include center();
+    }
+    &:hover,
+    :focus,
+    :active {
+      background: rgba(#ffffff, 0.3);
+    }
+  }
+}
+
+.flex {
+  display: flex;
+}

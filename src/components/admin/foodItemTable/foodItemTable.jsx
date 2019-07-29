@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Table from "./../table/table";
-import { GetFoodItems } from "../../service/FoodItemServices/foodItemServices";
-import { DeleteItem } from "./../../service/FoodItemServices/foodItemServices";
-import Pagination from "./../pagination/pagination";
-import Paginate from "./../common/paginate/paginate";
+import Table from "../../table/table";
+import { GetFoodItems } from "../../../service/FoodItemServices/foodItemServices";
+import { DeleteItem } from "../../../service/FoodItemServices/foodItemServices";
+import Pagination from "../../pagination/pagination";
+import Paginate from "../../common/paginate/paginate";
 import _ from "lodash";
-import SearchBox from "../form-elements/search";
+import SearchBox from "../../form-elements/search";
+import Loader from "react-loader-spinner";
 class FoodItemTable extends Component {
   state = {
     data: [],
@@ -15,7 +16,8 @@ class FoodItemTable extends Component {
       name: "name",
       order: "asc"
     },
-    query: ""
+    query: "",
+    loader: true
   };
 
   headerNames = [
@@ -67,7 +69,7 @@ class FoodItemTable extends Component {
   async componentDidMount() {
     try {
       const { data } = await GetFoodItems();
-      this.setState({ data });
+      if (data) this.setState({ data, loader: false });
     } catch (error) {
       console.log(error.response);
     }
@@ -94,7 +96,14 @@ class FoodItemTable extends Component {
   };
 
   render() {
-    const { pageSize, data, currentPage, currentOrder, query } = this.state;
+    const {
+      loader,
+      pageSize,
+      data,
+      currentPage,
+      currentOrder,
+      query
+    } = this.state;
 
     let item = query.trim()
       ? data.filter(f =>
@@ -107,21 +116,32 @@ class FoodItemTable extends Component {
     const food = Paginate(item, pageSize, currentPage);
     const filterdFood = _.orderBy(food, currentOrder.name, currentOrder.order);
     return (
-      <div className="form section-card">
-        <SearchBox onQuery={this.handelQuery} query={query} />
-        <Table
-          headerNames={this.headerNames}
-          onDelete={this.handelDelete}
-          data={filterdFood}
-          redirectTo={this.redirectTo}
-          orderBy={this.handelOrder}
-        />
-        <Pagination
-          onPageChange={this.handelPageChange}
-          pageSize={pageSize}
-          count={count}
-          currentPage={currentPage}
-        />
+      <div className="section-card">
+        {loader ? (
+          <div className="center">
+            <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
+            <p className="mt-2">
+              <b> loading...</b>
+            </p>
+          </div>
+        ) : (
+          <React.Fragment>
+            <SearchBox onQuery={this.handelQuery} query={query} />
+            <Table
+              headerNames={this.headerNames}
+              onDelete={this.handelDelete}
+              data={filterdFood}
+              redirectTo={this.redirectTo}
+              orderBy={this.handelOrder}
+            />
+            <Pagination
+              onPageChange={this.handelPageChange}
+              pageSize={pageSize}
+              count={count}
+              currentPage={currentPage}
+            />
+          </React.Fragment>
+        )}
       </div>
     );
   }

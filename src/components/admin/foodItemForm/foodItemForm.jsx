@@ -5,6 +5,7 @@ import {
   AddFoodItem,
   GetFoodItem
 } from "./../../../service/FoodItemServices/foodItemServices";
+import Loader from "react-loader-spinner";
 class FoodIteFrom extends Form {
   state = {
     data: {
@@ -19,7 +20,8 @@ class FoodIteFrom extends Form {
       peoplePerKg: ""
     },
     genericErrors: "",
-    id: 0
+    id: 0,
+    loader: false
   };
 
   async componentDidMount() {
@@ -78,7 +80,7 @@ class FoodIteFrom extends Form {
       const data = { ...this.state.data };
       data.id = this.state.id;
       await AddFoodItem(data);
-      this.props.history.push("/admin/foodlist");
+      this.props.history.goBack();
     } catch (error) {
       console.log();
       this.ShowCustomeServerErrors(error.response);
@@ -86,10 +88,17 @@ class FoodIteFrom extends Form {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loader } = this.state;
     return (
       <div className="container mt-4">
         <div className="row section-card">
+          {loader ? (
+            <div className="full-body">
+              <div className="center">
+                <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
+              </div>
+            </div>
+          ) : null}
           <div className="col-6">
             <h2 className="mt-2"> Add Food Item </h2>
             <p className="form-text text-danger">{this.state.genericErrors}</p>
