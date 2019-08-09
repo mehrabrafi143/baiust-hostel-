@@ -1,0 +1,71 @@
+.login-form {
+  width: 99%;
+  padding: 0;
+  margin: 0;
+  &__blue-body {
+    color: #fff;
+    background-color: #0084ff;
+    width: 100vh;
+    height: 100vh;
+    text-align: center;
+
+    @include mobile-only {
+      display: none;
+    }
+
+    &-content {
+      width: 70%;
+      @include center();
+      &-header {
+        font-size: 4rem;
+        font-weight: 300;
+        letter-spacing: 10px;
+        &-border {
+          background-color: #fff;
+          position: absolute;
+          width: 30%;
+          left: 14rem;
+          height: 4px;
+        }
+      }
+      &-des {
+        font-size: 1rem;
+        margin-top: 3rem;
+        line-height: 2;
+        letter-spacing: 2px;
+        word-spacing: 4px;
+        text-align: justify;
+      }
+    }
+  }
+
+  &__white-body {
+    @include mobile-only {
+      @include center();
+    }
+    &-content {
+      @include mobile-only {
+        width: 100%;
+        padding: 0;
+      }
+      width: 70%;
+      @include center();
+      &-header {
+        font-size: 4rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        word-spacing: 5px;
+        @include mobile-only {
+          font-size: 2rem;
+          font-weight: 300;
+          letter-spacing: 1px;
+          word-spacing: 2px;
+        }
+      }
+    }
+  }
+
+  @include mobile-only {
+    width: 80%;
+  }
+}

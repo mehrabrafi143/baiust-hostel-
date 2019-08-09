@@ -1,26 +1,30 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const MainNavBar = () => {
+const MainNavBar = ({ username }) => {
   return (
-    <nav className="navbar shadow ">
-      <div className="col-3" />
-      <div className="col-4 center" />
+    <nav className="Customenavbar shadow ">
       <ul className="col-4 left-nav">
-        <li>
-          <Link to="">
-            <i className="fa fa-globe" />
-          </Link>
-        </li>
-        <li>
-          <Link to="">Hellow User Name</Link>
-        </li>
-        <li>
-          <NavLink to="/registration">Register</NavLink>
-        </li>
-        <li>
-          <NavLink to="/login">Login</NavLink>
-        </li>
+        {username && (
+          <React.Fragment>
+            <li>
+              <Link to="">
+                <i className="fa fa-globe" />
+              </Link>
+            </li>
+            <li>
+              <Link to="">Hellow {username}</Link>
+            </li>
+            <li>
+              <Link to="/logout">Logout</Link>
+            </li>
+          </React.Fragment>
+        )}
+        {!username && (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

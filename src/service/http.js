@@ -1,5 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { getToken } from "./authService/authService";
+
+axios.defaults.headers.common["Authorization"] = "Bearer " + getToken();
 
 axios.interceptors.response.use(null, error => {
   const val =

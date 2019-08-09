@@ -17,7 +17,7 @@ class Sidebar extends Component {
         name: "Account Information",
         icon: "fa fa-info",
         child: [],
-        to: ""
+        to: "/admin/account/"
       },
       {
         name: "Student Information",
@@ -53,10 +53,10 @@ class Sidebar extends Component {
         child: [
           {
             name: "Food List",
-            to: "/admin/food/foodlist",
+            to: "/admin/food",
             icon: "fa fa-plus-circle"
           },
-          { name: "Add Food", to: "/admin/food/addfood", icon: "fa fa-list" }
+          { name: "Add Food", to: "/admin/addfood", icon: "fa fa-list" }
         ],
         show: false,
         to: "/admin/food"

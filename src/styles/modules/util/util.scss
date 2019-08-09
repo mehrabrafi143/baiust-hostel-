@@ -69,3 +69,29 @@
   top: 0;
   left: 0;
 }
+
+$glob: 1005px !default;
+$mq-mobile-landscape: 600px !default;
+$mq-tablet-portrait: 768px !default;
+$mq-tablet-landscape: 1024px !default;
+$mq-desktop: 1382px !default;
+
+// Both portrait and landscape
+@mixin mobile-only {
+  @media (max-width: $mq-mobile-landscape) {
+    @content;
+  }
+}
+
+@mixin global {
+  @media (max-width: $glob) {
+    @content;
+  }
+}
+
+.margin-left {
+  margin-left: 10rem;
+  @include global {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,53 @@
+.usernavbar {
+  background-color: #4267b2;
+  a {
+    &:link,
+    &:visited,
+    &:focus {
+      color: #ffffff;
+      text-align: center;
+    }
+  }
+
+  .navbar-nav {
+    background: #4267b2;
+  }
+  .right-align {
+    position: absolute;
+    right: 20rem;
+    @include global {
+      position: relative;
+      right: 0;
+      margin-top: 3rem;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: #4267b2;
+    border: none;
+    margin-top: 0.6rem;
+    border-radius: none;
+    @include global {
+      margin-top: 0;
+    }
+    a {
+      &:link,
+      &:visited {
+        color: #ffffff;
+        text-align: center;
+      }
+      &:focus,
+      &:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  .fa-bars {
+    color: #4267b2;
+    font-size: 1.5rem;
+  }
+  .navbar-toggler {
+    background-color: #fff;
+  }
+}
