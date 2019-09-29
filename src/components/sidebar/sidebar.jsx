@@ -4,52 +4,55 @@ import NavIem from "./navItem/navITem";
 
 class Sidebar extends Component {
   state = {
-    classes: "",
     navItem: [
       {
         name: "Dashboard",
         child: [],
-        icon: "fa fa-home",
+        icon: "fa fa-home fa-lg",
         show: false,
-        to: "/admin/dashboard"
+        to: "/admin/dashboard",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       },
       {
         name: "Account Information",
-        icon: "fa fa-info",
+        icon: "fa fa-info fa-lg",
         child: [],
-        to: "/admin/account/"
+        to: "/admin/account/",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       },
       {
         name: "Student Information",
-        icon: "fa fa-info",
+        icon: "fa fa-info fa-lg",
         child: [
           {
             name: "Students List",
-            icon: "fa fa-list",
-            to: "/admin/studentlist"
+            icon: "fa fa-list ",
+            to: "/admin/student"
           },
           {
             name: "Register Student",
-            icon: "fa fa-user",
+            icon: "fa fa-user ",
             to: "/admin/addstudent"
           }
         ],
         show: false,
-        to: "/admin/student"
+        to: "/admin/student",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       },
       {
         name: "Food Menu",
-        icon: "fa fa-list-alt",
+        icon: "fa fa-list-alt fa-lg",
         child: [
           { name: "Menu List", icon: "fa fa-list", to: "/admin/foodmenu" },
           { name: "Add Menu", icon: "fa fa-plus-circle", to: "/admin/addmenu" }
         ],
         show: false,
-        to: "/admin/foodmenu"
+        to: "/admin/foodmenu",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       },
       {
         name: "Food Item",
-        icon: "fa fa-cutlery",
+        icon: "fa fa-cutlery fa-lg",
         child: [
           {
             name: "Food List",
@@ -59,7 +62,8 @@ class Sidebar extends Component {
           { name: "Add Food", to: "/admin/addfood", icon: "fa fa-list" }
         ],
         show: false,
-        to: "/admin/food"
+        to: "/admin/food",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       }
     ]
   };
@@ -68,8 +72,15 @@ class Sidebar extends Component {
     const navItem = [...this.state.navItem];
     const index = navItem.findIndex(i => i.name === input.name);
     const item = { ...navItem[index] };
+
     item.show = !item.show;
+
+    if (item.iconClasses === "fa fa-sort-desc text-right-icon")
+      item.iconClasses = "fa fa-sort-asc text-down-icon";
+    else item.iconClasses = "fa fa-sort-desc text-right-icon";
+
     navItem[index] = item;
+
     this.setState({ navItem });
   };
 

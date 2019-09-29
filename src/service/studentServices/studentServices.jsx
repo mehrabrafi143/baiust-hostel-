@@ -12,6 +12,10 @@ export function GetStudents() {
 }
 
 export function GetStudent(id) {
+  return http.get(apiEndpoint + "/api/get?username=" + id);
+}
+
+export function GetStudentById(id) {
   return http.get(api + "/" + id);
 }
 

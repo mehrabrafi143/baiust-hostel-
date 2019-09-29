@@ -12,7 +12,7 @@ const ProtectedRoute = ({ component: Component, path }) => {
     <Route
       path={path}
       render={props => {
-        if (user && role === "Amoi") return <Component {...props} />;
+        if (user && role === "Admin") return <Component {...props} />;
         return <Redirect to="/login" />;
       }}
     />

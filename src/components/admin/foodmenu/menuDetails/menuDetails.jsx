@@ -7,6 +7,8 @@ import _ from "lodash";
 import Table from "./../../../table/table";
 import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
+import Spiner from "../../../spiner/spiner";
+import { getUserRole } from "../../../../service/authService/authService";
 
 class MenuDetails extends Component {
   state = {
@@ -93,13 +95,7 @@ class MenuDetails extends Component {
     const foodItems = _.orderBy(data, currentOrder.name, currentOrder.order);
     return (
       <div className="section-card section-card-md">
-        {loader ? (
-          <div className="full-body">
-            <div className="center">
-              <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-            </div>
-          </div>
-        ) : null}
+        <Spiner loader={loader} />
         <div className="text-center section-title">
           <Link to={"/admin/addmenu/" + menu.id}>{menu.name}</Link>
         </div>

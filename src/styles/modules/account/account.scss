@@ -1,0 +1,35 @@
+.purple-gradient {
+  background: linear-gradient(83deg, #6facfd, #4740db) !important;
+}
+.peach-gradient {
+  background: linear-gradient(40deg, #1e6cc1, #8d89f1) !important;
+}
+.blue-gradient {
+  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+}
+
+.account {
+  text-align: center;
+  position: relative;
+  h1 {
+    color: #fff;
+    padding-top: 3rem;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+  }
+  &-card {
+    height: 15rem;
+    border-radius: 0.6rem;
+
+    span {
+      color: #fff;
+      font-size: 2.3rem;
+      font-weight: 300;
+      font-family: "Raleway", sans-serif;
+      display: block;
+      margin-top: 2rem;
+    }
+  }
+}

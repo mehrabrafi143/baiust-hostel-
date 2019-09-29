@@ -1,0 +1,44 @@
+.user-notice {
+  list-style: none;
+  padding: 5rem 10rem 5rem 10rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  &_body {
+    border-color: transparent;
+    border-left-width: 0;
+    border-right-width: 0;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    padding: 12px;
+  }
+
+  &_title {
+    &:link,
+    &:visited,
+    &:active {
+      font-weight: 600;
+      color: #385898;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+    span {
+      color: #616770;
+      display: block;
+      font-size: 12px;
+    }
+  }
+
+  &_des {
+    color: #1d2129;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.38;
+    padding-bottom: 1rem;
+  }
+}

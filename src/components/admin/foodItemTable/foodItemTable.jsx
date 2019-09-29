@@ -29,10 +29,10 @@ class FoodItemTable extends Component {
       key: "delete",
       content: item => (
         <span
-          className="btn btn-danger hover"
+          className="delete-btn text-sm"
           onClick={() => this.handelDelete(item)}
         >
-          Delete
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
         </span>
       )
     },
@@ -40,10 +40,10 @@ class FoodItemTable extends Component {
       key: "update",
       content: item => (
         <span
-          className="btn btn-primary hover"
+          className="update-btn text-sm"
           onClick={() => this.redirectTo(item)}
         >
-          Update
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </span>
       )
     }
@@ -57,7 +57,7 @@ class FoodItemTable extends Component {
       this.setState({ data });
       await DeleteItem(item.id);
     } catch (error) {
-      this.setState({ data: originalState });
+      this.setState({ data: originalState, loader: false });
       console.log(error);
     }
   };
@@ -72,6 +72,7 @@ class FoodItemTable extends Component {
       if (data) this.setState({ data, loader: false });
     } catch (error) {
       console.log(error.response);
+      this.setState({ loader: false });
     }
   }
 
@@ -116,7 +117,7 @@ class FoodItemTable extends Component {
     const food = Paginate(item, pageSize, currentPage);
     const filterdFood = _.orderBy(food, currentOrder.name, currentOrder.order);
     return (
-      <div className="section-card">
+      <div className="section-card paddingLR">
         {loader ? (
           <div className="center">
             <Loader type="Oval" color="#1B3A5E" height={60} width={60} />

@@ -1,4 +1,7 @@
 .section {
+  @include global {
+    display: none;
+  }
   &-title {
     font-size: 1.6rem;
     letter-spacing: 2px;

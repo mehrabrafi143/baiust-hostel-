@@ -1,0 +1,67 @@
+.notificationModel {
+  position: absolute;
+  top: 3rem;
+  left: -14.8rem;
+  width: 30rem;
+  height: 15rem;
+  background-color: #fff;
+  text-align: center;
+  overflow-y: scroll;
+  @include global {
+    @include center();
+    top: 10.5rem;
+    left: 48.4%;
+    width: 20rem;
+  }
+  z-index: 9999999999999999;
+  &-header {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+    z-index: 999999999999999;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+  border-radius: 1rem;
+
+  box-shadow: 0px 3px 5px 0px rgb(160, 156, 160);
+
+  //   &::before {
+  //     position: absolute;
+  //     top: -0.7rem;
+  //     left: 50%;
+  //     transform: translateY(-50%);
+  //     content: "";
+  //     width: 0;
+  //     height: 0;
+  //     border-bottom: 12px solid #fff;
+  //     border-left: 8px solid transparent;
+  //     border-right: 8px solid transparent;
+  //     z-index: -1;
+  //   }
+
+  &-item {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding: 0.2rem;
+    li {
+      width: 100%;
+      margin: 0;
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem 0;
+      letter-spacing: 2px;
+      word-spacing: 3px;
+      a:link,
+      a:visited,
+      a:hover,
+      a:focus,
+      a:active {
+        font-weight: 600;
+        color: #385898;
+        cursor: pointer;
+        text-decoration: none;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}

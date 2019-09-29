@@ -42,6 +42,7 @@ class RegistrationForm extends Form {
       this.props.history.push("/admin/studentform/" + data);
     } catch (error) {
       this.ShowServerErrors(error);
+      this.setState({ loader: false });
     }
   };
 

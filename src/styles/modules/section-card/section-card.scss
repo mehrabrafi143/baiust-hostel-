@@ -1,0 +1,61 @@
+.section-card {
+  border: 0;
+  @include global {
+    margin-top: 27rem;
+  }
+
+  &-md {
+    margin-top: 3rem;
+    @include global {
+      margin-top: 2rem;
+    }
+  }
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+  top: -100px;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  padding: 2rem;
+  height: 500px;
+
+  &__full_height {
+    height: 100%;
+  }
+}
+
+.section-card-user {
+  margin-top: 1vh;
+  position: absolute;
+  top: 3rem;
+  box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+  width: 100%;
+  height: 60rem;
+  margin-left: 12%;
+
+  @include global {
+    left: -68px;
+    box-shadow: none;
+    height: 69rem;
+  }
+}
+
+.form-section {
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  padding: 2rem;
+}

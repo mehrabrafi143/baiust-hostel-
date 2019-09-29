@@ -31,7 +31,7 @@ class Login extends Form {
       role = getUserRole();
     if (!user) return this.props.history.push("/login");
     let location = "";
-    location = user && role === "Amoi" ? "/admin" : "/user";
+    location = user && role === "Admin" ? "/admin" : "/user";
     this.props.history.push(location);
   };
 
@@ -40,7 +40,7 @@ class Login extends Form {
       role = getUserRole();
     if (!user) return (window.location = "/login");
 
-    return (window.location = user && role === "Amoi" ? "/admin" : "/user");
+    return (window.location = user && role === "Admin" ? "/admin" : "/user");
   };
 
   dosubmit = async () => {

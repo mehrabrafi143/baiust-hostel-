@@ -4,8 +4,12 @@ import Pagination from "../../pagination/pagination";
 import Paginate from "../../common/paginate/paginate";
 import _ from "lodash";
 import SearchBox from "../../form-elements/search";
-import Loader from "react-loader-spinner";
-import { GetStudents } from "./../../../service/studentServices/studentServices";
+import {
+  GetStudents,
+  DeleteStudent
+} from "./../../../service/studentServices/studentServices";
+import Spiner from "./../../spiner/spiner";
+import { Link } from "react-router-dom";
 
 class StudentList extends Component {
   state = {
@@ -21,26 +25,18 @@ class StudentList extends Component {
   };
 
   headerNames = [
-    { label: "Name", path: "name" },
+    {
+      label: "Name",
+      content: student => (
+        <Link to={"/admin/student/" + student.id}>{student.name}</Link>
+      )
+    },
     { label: "Id", path: "roll" },
     { label: "Room No", path: "roomNo" },
     { label: "Address", path: "address" },
     { label: "Phone", path: "phoneNumber" },
-    { label: "Deu", path: "deu" }
+    { label: "Deu", path: "deuAmount" }
   ];
-
-  handelDelete = async item => {
-    const originalState = this.state.data;
-    try {
-      //   let data = [...this.state.data];
-      //   data = data.filter(d => d.id !== item.id);
-      //   this.setState({ data });
-      //   await DeleteItem(item.id);
-    } catch (error) {
-      this.setState({ data: originalState });
-      console.log(error);
-    }
-  };
 
   redirectTo = item => {
     this.props.history.push("/admin/addfood/" + item.id);
@@ -52,6 +48,7 @@ class StudentList extends Component {
       if (data) this.setState({ data, loader: false });
     } catch (error) {
       console.log(error.response);
+      this.setState({ loader: false });
     }
   }
 
@@ -86,8 +83,10 @@ class StudentList extends Component {
     } = this.state;
 
     let item = query.trim()
-      ? data.filter(f =>
-          f.name.toLowerCase().includes(query.toLowerCase().trim())
+      ? data.filter(
+          f =>
+            f.name.toLowerCase().includes(query.toLowerCase().trim()) ||
+            f.roll.toString().includes(query.trim())
         )
       : data;
 
@@ -96,34 +95,24 @@ class StudentList extends Component {
     const food = Paginate(item, pageSize, currentPage);
     const filterdFood = _.orderBy(food, currentOrder.name, currentOrder.order);
     return (
-      <div className="form section-card">
-        {loader ? (
-          <div className="full-body">
-            <div className="center">
-              <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-              <p className="mt-2">
-                <b> loading...</b>
-              </p>
-            </div>
-          </div>
-        ) : (
-          <React.Fragment>
-            <SearchBox onQuery={this.handelQuery} query={query} />
-            <Table
-              headerNames={this.headerNames}
-              onDelete={this.handelDelete}
-              data={filterdFood}
-              redirectTo={this.redirectTo}
-              orderBy={this.handelOrder}
-            />
-            <Pagination
-              onPageChange={this.handelPageChange}
-              pageSize={pageSize}
-              count={count}
-              currentPage={currentPage}
-            />
-          </React.Fragment>
-        )}
+      <div className="form section-card paddingLR">
+        <Spiner loader={this.state.loader} />
+        <React.Fragment>
+          <SearchBox onQuery={this.handelQuery} query={query} />
+          <Table
+            headerNames={this.headerNames}
+            onDelete={this.handelDelete}
+            data={filterdFood}
+            redirectTo={this.redirectTo}
+            orderBy={this.handelOrder}
+          />
+          <Pagination
+            onPageChange={this.handelPageChange}
+            pageSize={pageSize}
+            count={count}
+            currentPage={currentPage}
+          />
+        </React.Fragment>
       </div>
     );
   }

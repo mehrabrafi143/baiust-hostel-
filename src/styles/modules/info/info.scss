@@ -1,0 +1,32 @@
+.info {
+  margin-top: 2rem;
+  list-style: none;
+  li {
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #222;
+      display: inline;
+    }
+    span {
+      font-size: 1.4rem;
+      color: #214167;
+      font-weight: 300;
+      margin-left: 2rem;
+    }
+  }
+}
+
+.profile {
+  color: #214167;
+  font-size: 15rem;
+}
+
+.roundedImg {
+  text-align: center;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 100%;
+  border: 1px solid #214167;
+}

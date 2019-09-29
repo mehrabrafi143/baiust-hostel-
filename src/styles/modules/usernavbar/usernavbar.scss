@@ -1,16 +1,19 @@
 .usernavbar {
-  background-color: #4267b2;
+  background-color: #3b4d73;
+  height: 4.6rem;
+  z-index: 99999999999999999999999;
   a {
     &:link,
     &:visited,
     &:focus {
       color: #ffffff;
       text-align: center;
+      margin-right: 1.3rem;
     }
   }
 
   .navbar-nav {
-    background: #4267b2;
+    background-color: #3b4d73;
   }
   .right-align {
     position: absolute;

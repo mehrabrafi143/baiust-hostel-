@@ -35,6 +35,11 @@ export function registration(data) {
   return http.post(apiEndpoint + "/api/account/register", data);
 }
 
+export function PasswordChange(data) {
+  const d = queryString.stringify(data);
+  return http.post(apiEndpoint + "/api/account/changePassword", d);
+}
+
 export function logout() {
   localStorage.removeItem("username");
   localStorage.removeItem("token");

@@ -84,6 +84,7 @@ class FoodIteFrom extends Form {
     } catch (error) {
       console.log();
       this.ShowCustomeServerErrors(error.response);
+      this.setState({ loader: false });
     }
   };
 

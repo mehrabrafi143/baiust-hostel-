@@ -21,7 +21,16 @@ class MenuCard extends Component {
   }
 
   render() {
-    const { menu, handelDelete } = this.props;
+    const {
+      menu,
+      handelDelete,
+      mealMenus,
+      handelAssign,
+      handleExtra
+    } = this.props;
+
+    let count = 1;
+
     return (
       <div className="card card-md">
         <div className="card-header">
@@ -32,22 +41,43 @@ class MenuCard extends Component {
             <div className={this.state.classes}>
               <Link to={"/admin/addmenu/" + menu.id}>Edit</Link>
               <Link onClick={() => handelDelete(menu.id)}>Delete</Link>
-              <Link>Assign</Link>
+              <Link onClick={() => handelAssign(menu.id)}>Assign</Link>
             </div>
           </div>
+
           <div className="card-header__title">
-            <Link to={"admin/"}>{menu.name}</Link>
+            <Link to={"/admin/foodmenu/" + menu.id}>{menu.name}</Link>
             <span className="card-title__price">{menu.fullPrice}</span>
           </div>
         </div>
         <ul className="list-group list-group-flush card-list">
-          {menu.foodItems.map(f => (
-            <li className="list-group-item">
-              {f.name} |{" "}
-              <bold className="text-bold">Price: {f.pricePerHead}</bold>
-            </li>
-          ))}
+          {menu.foodItems.map(f =>
+            count++ <= 3 ? (
+              <li className="list-group-item" key={f.id}>
+                {f.name} |{" "}
+                <span className="text-bold">Price: {f.pricePerHead}</span>
+              </li>
+            ) : null
+          )}
         </ul>
+
+        <div className="card-body">
+          {mealMenus.map(m =>
+            m.id === menu.id ? (
+              <React.Fragment>
+                <div className="text-medium badge badge-danger text-bold mt-1">
+                  {m.name}
+                </div>
+                <div
+                  className="btn btn-primary btn-small"
+                  onClick={() => handleExtra(m.mealId)}
+                >
+                  Add Extra
+                </div>
+              </React.Fragment>
+            ) : null
+          )}
+        </div>
       </div>
     );
   }

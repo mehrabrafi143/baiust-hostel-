@@ -1,7 +1,10 @@
 import React from "react";
 import Form from "./../../../form/form";
 import Joi from "joi-browser";
-import { AddStudent } from "./../../../../service/studentServices/studentServices";
+import {
+  AddStudent,
+  GetStudentById
+} from "./../../../../service/studentServices/studentServices";
 import Loader from "react-loader-spinner";
 
 class StudentForm extends Form {
@@ -9,6 +12,7 @@ class StudentForm extends Form {
     data: {
       name: "",
       roll: "",
+      dept: "",
       roomNo: "",
       phoneNumber: "",
       address: ""
@@ -17,11 +21,13 @@ class StudentForm extends Form {
     errors: {
       name: "",
       roll: "",
+      dept: "",
       roomNo: "",
       phoneNumber: "",
       address: ""
     },
-    loader: false
+    loader: false,
+    genericErrors: ""
   };
 
   schema = {
@@ -32,19 +38,47 @@ class StudentForm extends Form {
     roll: Joi.number()
       .min(7)
       .required(),
+    dept: Joi.string()
+      .required()
+      .min(2)
+      .max(5),
     roomNo: Joi.string().required(),
     phoneNumber: Joi.number().required(),
     address: Joi.string().required()
   };
 
+  async componentDidMount() {
+    const id = this.props.match.params.id;
+    if (id) {
+      this.setState({ loader: true });
+      try {
+        const { data } = await GetStudentById(id);
+        if (data) {
+          this.setState({
+            data,
+            loader: false
+          });
+        }
+      } catch (error) {
+        this.setState({ loader: false });
+      }
+    }
+  }
+
   dosubmit = async () => {
     this.setState({ loader: true });
+
     try {
       const { data } = this.state;
       data.userAccountId = this.props.match.params.id;
       await AddStudent(data);
-      this.props.history.push("/admin/studentlist");
-    } catch (error) {}
+      this.props.history.push("/admin/student");
+    } catch (error) {
+      this.setState({
+        loader: false,
+        genericErrors: error.response.data.message
+      });
+    }
   };
 
   render() {
@@ -77,6 +111,8 @@ class StudentForm extends Form {
                 "Room Number",
                 errors.roomNo
               )}
+
+              {this.renderInput("dept", data.dept, "Department", errors.dept)}
               {this.renderInput(
                 "phoneNumber",
                 data.phoneNumber,
