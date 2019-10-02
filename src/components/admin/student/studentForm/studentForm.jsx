@@ -6,6 +6,10 @@ import {
   GetStudentById
 } from "./../../../../service/studentServices/studentServices";
 import Loader from "react-loader-spinner";
+import Gender from "./../../gender/gender";
+import FemaleRoom from "./femaleRoom";
+import { GetSits } from "./../../../../service/sitServices/sitServices";
+import Autocomplete from "./try";
 
 class StudentForm extends Form {
   state = {
@@ -17,7 +21,11 @@ class StudentForm extends Form {
       phoneNumber: "",
       address: ""
     },
-
+    suggestions: [],
+    activeSuggestion: 0,
+    filteredSuggestions: [],
+    showSuggestions: false,
+    gender: "",
     errors: {
       name: "",
       roll: "",
@@ -27,7 +35,80 @@ class StudentForm extends Form {
       address: ""
     },
     loader: false,
-    genericErrors: ""
+    genericErrors: "",
+    sex: "",
+    building: ""
+  };
+  //start autosuggation
+
+  onChangeAuto = e => {
+    const { suggestions } = this.state;
+    const value = e.currentTarget.value;
+    console.log(value);
+    const filteredSuggestions = suggestions.filter(
+      suggestion => suggestion.toLowerCase().indexOf(value.toLowerCase()) > -1
+    );
+
+    const data = { ...this.state.data, roomNo: e.currentTarget.value };
+
+    this.setState({
+      activeSuggestion: 0,
+      filteredSuggestions,
+      showSuggestions: true,
+      data
+    });
+  };
+
+  onClickAuto = e => {
+    const data = { ...this.state.data, roomNo: e.currentTarget.innerText };
+    this.setState({
+      activeSuggestion: 0,
+      filteredSuggestions: [],
+      showSuggestions: false,
+      data
+    });
+  };
+
+  onKeyDownAuto = e => {
+    const { activeSuggestion, filteredSuggestions } = this.state;
+
+    if (e.keyCode === 13) {
+      const data = {
+        ...this.state.data,
+        roomNo: filteredSuggestions[activeSuggestion]
+      };
+      this.setState({
+        activeSuggestion: 0,
+        showSuggestions: false,
+        data
+      });
+    } else if (e.keyCode === 38) {
+      if (activeSuggestion === 0) {
+        return;
+      }
+
+      this.setState({ activeSuggestion: activeSuggestion - 1 });
+    } else if (e.keyCode === 40) {
+      if (activeSuggestion - 1 === filteredSuggestions.length) {
+        return;
+      }
+
+      this.setState({ activeSuggestion: activeSuggestion + 1 });
+    }
+  };
+
+  //end autosuggation
+  hadelGenderChange = async ({ currentTarget }) => {
+    this.setState({ gender: currentTarget["value"] });
+
+    if (currentTarget["value"] === "1") {
+      this.setState({ sex: " Boys ", building: " tenth floor building " });
+    } else {
+      this.setState({ sex: " Girls ", building: " Eighth floor building " });
+    }
+
+    const { data: suggestions } = await GetSits(currentTarget["value"]);
+    this.setState({ suggestions });
   };
 
   schema = {
@@ -82,11 +163,22 @@ class StudentForm extends Form {
   };
 
   render() {
-    const { data, errors, loader } = this.state;
+    const {
+      data,
+      errors,
+      loader,
+      gender,
+      activeSuggestion,
+      filteredSuggestions,
+      showSuggestions,
+      suggestions,
+      sex,
+      building
+    } = this.state;
     return (
       <div className="container mt-4">
         <div className="row">
-          <div className="col-6">
+          <div className="col-7">
             {loader ? (
               <div className="full-body">
                 <div className="center">
@@ -104,14 +196,6 @@ class StudentForm extends Form {
                 errors.name
               )}
               {this.renderInput("roll", data.roll, "Enter Id", errors.roll)}
-
-              {this.renderInput(
-                "roomNo",
-                data.roomNo,
-                "Room Number",
-                errors.roomNo
-              )}
-
               {this.renderInput("dept", data.dept, "Department", errors.dept)}
               {this.renderInput(
                 "phoneNumber",
@@ -125,6 +209,31 @@ class StudentForm extends Form {
                 "Address",
                 errors.address
               )}
+              {
+                <Gender
+                  gender={gender}
+                  hadelGenderChange={this.hadelGenderChange}
+                />
+              }
+
+              {gender ? (
+                <Autocomplete
+                  onClickAuto={this.onClickAuto}
+                  onChangeAuto={this.onChangeAuto}
+                  onKeyDownAuto={this.onKeyDownAuto}
+                  suggestions={this.state.suggestions}
+                  showSuggestions={showSuggestions}
+                  activeSuggestion={activeSuggestion}
+                  filteredSuggestions={filteredSuggestions}
+                  renderInput={this.renderInput}
+                  value={data.roomNo}
+                  error={errors.roomNo}
+                  suggestions={suggestions}
+                  sex={sex}
+                  building={building}
+                />
+              ) : null}
+
               {this.renderButton("Save")}
             </form>
           </div>

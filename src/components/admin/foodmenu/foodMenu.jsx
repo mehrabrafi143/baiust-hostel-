@@ -18,7 +18,7 @@ import {
 class FoodMenu extends Component {
   state = {
     data: [],
-    pageSize: 4,
+    pageSize: 3,
     currentPage: 1,
     query: "",
     loader: true,

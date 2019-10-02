@@ -1,0 +1,18 @@
+.suggestions {
+  list-style: none;
+  background-color: #e9ebee;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+  & > li {
+    cursor: pointer;
+    padding: 0.7rem;
+    display: list-item;
+    text-align: -webkit-match-parent;
+    font-weight: 300;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: #ddd !important;
+    }
+  }
+}

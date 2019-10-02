@@ -15,6 +15,7 @@
     "popper.js": "^1.15.0",
     "query-string": "^6.8.1",
     "react": "^16.8.6",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.8.6",
     "react-dropdown-select": "^3.1.0",
     "react-loader-spinner": "^2.3.0",

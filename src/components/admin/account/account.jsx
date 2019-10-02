@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Spiner from "./../../spiner/spiner";
+
 import {
   GetTotalMealPrice,
   GetDeu,
@@ -9,18 +11,25 @@ class Account extends Component {
   state = {
     totalMealPrice: [],
     totalDeu: 0,
-    totalPaid: 0
+    totalPaid: 0,
+    loader: false
   };
 
   async componentDidMount() {
-    const { data: totalMealPrice } = await GetTotalMealPrice();
-    const { data: totalDeu } = await GetDeu();
-    const { data: totalPaid } = await GetPaid();
-    this.setState({ totalMealPrice, totalDeu, totalPaid });
+    try {
+      this.setState({ loader: true });
+      const { data: totalMealPrice } = await GetTotalMealPrice();
+      const { data: totalDeu } = await GetDeu();
+      const { data: totalPaid } = await GetPaid();
+      if (totalMealPrice)
+        this.setState({ totalMealPrice, totalDeu, totalPaid, loader: false });
+    } catch (e) {
+      this.setState({ loader: false });
+    }
   }
 
   render() {
-    const { totalMealPrice, totalDeu, totalPaid } = this.state;
+    const { totalMealPrice, loader, totalDeu, totalPaid } = this.state;
 
     return (
       <div className="section-card">
@@ -61,8 +70,7 @@ class Account extends Component {
               <div className="purple-gradient account-card animated bounceInRight">
                 <h1 className="card-header-title">Todays Total Meal Price</h1>
                 <span className="amount">
-                  {" "}
-                  {totalMealPrice[1] + totalMealPrice[0]}{" "}
+                  {totalMealPrice[1] + totalMealPrice[0]}
                 </span>
               </div>
             </div>
