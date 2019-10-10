@@ -6,7 +6,7 @@ const SubNavBar = ({ child }) => {
       {child.map(c => (
         <li key={c.name}>
           <Link to={c.to}>
-            <i className={c.icon} /> {c.name}
+            <i className={c.icon + " icon-subnav"} /> {c.name}
           </Link>
         </li>
       ))}

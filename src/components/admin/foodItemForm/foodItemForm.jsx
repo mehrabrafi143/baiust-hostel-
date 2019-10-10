@@ -6,6 +6,7 @@ import {
   GetFoodItem
 } from "./../../../service/FoodItemServices/foodItemServices";
 import Loader from "react-loader-spinner";
+import Spiner from "./../../spiner/spiner";
 class FoodIteFrom extends Form {
   state = {
     data: {
@@ -91,40 +92,32 @@ class FoodIteFrom extends Form {
   render() {
     const { data, errors, loader } = this.state;
     return (
-      <div className="container mt-4">
-        <div className="row section-card">
-          {loader ? (
-            <div className="full-body">
-              <div className="center">
-                <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-              </div>
-            </div>
-          ) : null}
-          <div className="col-6">
-            <h2 className="mt-2"> Add Food Item </h2>
-            <p className="form-text text-danger">{this.state.genericErrors}</p>
-            <form className="form" onSubmit={this.handelSubmit}>
-              {this.renderInput(
-                "name",
-                data.name,
-                "Enter Food Name",
-                errors.name
-              )}
-              {this.renderInput(
-                "pricePerKg",
-                data.pricePerKg,
-                "Enter Price/Kg (optional)",
-                errors.pricePerKg
-              )}
-              {this.renderInput(
-                "peoplePerKg",
-                data.peoplePerKg,
-                "Enter People/Kg (optional)",
-                errors.peoplePerKg
-              )}
-              {this.renderButton("Add")}
-            </form>
-          </div>
+      <div className="white-section">
+        <Spiner loader={loader} />
+        <div className="enter-padding">
+          <h2 className="mt-2"> Add Food Item </h2>
+          <p className="form-text text-danger">{this.state.genericErrors}</p>
+          <form className="form" onSubmit={this.handelSubmit}>
+            {this.renderInput(
+              "name",
+              data.name,
+              "Enter Food Name",
+              errors.name
+            )}
+            {this.renderInput(
+              "pricePerKg",
+              data.pricePerKg,
+              "Enter Price/Kg (optional)",
+              errors.pricePerKg
+            )}
+            {this.renderInput(
+              "peoplePerKg",
+              data.peoplePerKg,
+              "Enter People/Kg (optional)",
+              errors.peoplePerKg
+            )}
+            {this.renderButton("Add")}
+          </form>
         </div>
       </div>
     );

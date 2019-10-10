@@ -5,13 +5,12 @@ import Paginate from "../../common/paginate/paginate";
 import _ from "lodash";
 import SearchBox from "../../form-elements/search";
 import {
-  GetStudents,
-  DeleteStudent
-} from "./../../../service/studentServices/studentServices";
-import Spiner from "./../../spiner/spiner";
-import { Link } from "react-router-dom";
-
-class StudentList extends Component {
+  GetSitByGender,
+  DeleteSit
+} from "./../../../service/sitServices/sitServices";
+import Spiner from "../../spiner/spiner";
+import Gender from "./../gender/gender";
+class Sits extends Component {
   state = {
     data: [],
     pageSize: 8,
@@ -20,31 +19,70 @@ class StudentList extends Component {
       name: "name",
       order: "asc"
     },
+    genderId: "1",
     query: "",
     loader: true
   };
 
   headerNames = [
+    { label: "Room Name", path: "name" },
+    { label: "Gender", path: "gender.name" },
+    { label: "Capacity", path: "capacity" },
+    { label: "Occupied", path: "occupiedSit" },
+    { label: "Electricity Bill", path: "electricityBill" },
+    { label: "Electricity Bill/Head", path: "electricityBillPerHead" },
     {
-      label: "Name",
-      content: student => (
-        <Link to={"/admin/student/" + student.id}>{student.name}</Link>
+      key: "delete",
+      content: item => (
+        <span
+          className="delete-btn text-sm"
+          onClick={() => this.handelDelete(item)}
+        >
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </span>
       )
     },
-    { label: "Id", path: "roll" },
-    { label: "Room No", path: "sit.name" },
-    { label: "Address", path: "address" },
-    { label: "Phone", path: "phoneNumber" },
-    { label: "Deu", path: "deuAmount" }
+    {
+      key: "update",
+      content: item => (
+        <span
+          className="update-btn text-sm"
+          onClick={() => this.redirectTo(item)}
+        >
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </span>
+      )
+    }
   ];
 
+  hadelGenderChange = async ({ currentTarget }) => {
+    const { genderId: oldId } = this.state;
+    if (oldId !== currentTarget["value"]) {
+      const { data } = await GetSitByGender(currentTarget["value"]);
+      if (data) this.setState({ data, genderId: currentTarget["value"] });
+    }
+  };
+
+  handelDelete = async item => {
+    const originalState = this.state.data;
+    try {
+      let data = [...this.state.data];
+      data = data.filter(d => d.id !== item.id);
+      this.setState({ data });
+      await DeleteSit(item.id);
+    } catch (error) {
+      this.setState({ data: originalState, loader: false });
+      console.log(error);
+    }
+  };
+
   redirectTo = item => {
-    this.props.history.push("/admin/addfood/" + item.id);
+    this.props.history.push("/admin/sitsform/" + item.id);
   };
 
   async componentDidMount() {
     try {
-      const { data } = await GetStudents();
+      const { data } = await GetSitByGender(this.state.genderId);
       if (data) this.setState({ data, loader: false });
     } catch (error) {
       console.log(error.response);
@@ -79,14 +117,13 @@ class StudentList extends Component {
       data,
       currentPage,
       currentOrder,
-      query
+      query,
+      genderId
     } = this.state;
 
     let item = query.trim()
-      ? data.filter(
-          f =>
-            f.name.toLowerCase().includes(query.toLowerCase().trim()) ||
-            f.roll.toString().includes(query.trim())
+      ? data.filter(f =>
+          f.name.toLowerCase().includes(query.toLowerCase().trim())
         )
       : data;
 
@@ -97,9 +134,10 @@ class StudentList extends Component {
     return (
       <div className="white-section">
         <div className="enter-padding">
-          <Spiner loader={this.state.loader} />
-          <h2 className="section-title"> Student's Informations</h2>
+          <Spiner loader={loader} />
+          <h2 className="section-title">Sit information</h2>
           <SearchBox onQuery={this.handelQuery} query={query} />
+          <Gender hadelGenderChange={this.hadelGenderChange} />
           <Table
             headerNames={this.headerNames}
             onDelete={this.handelDelete}
@@ -119,4 +157,4 @@ class StudentList extends Component {
   }
 }
 
-export default StudentList;
+export default Sits;

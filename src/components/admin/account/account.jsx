@@ -32,44 +32,49 @@ class Account extends Component {
     const { totalMealPrice, loader, totalDeu, totalPaid } = this.state;
 
     return (
-      <div className="section-card">
-        <div className="container">
-          <div className="row account">
+      <div className="white-section">
+        <div className="enter-padding">
+          <div className="row">
             <div className="col-4">
-              <div className="blue-gradient animated bounceInLeft account-card">
-                <h1 className="card-header-title">
+              <div className="bg-gray account-info">
+                <h1 className="account-info_title">
                   Todays Students Total Meal Price
                 </h1>
-                <span className="amount"> {totalMealPrice[0]} </span>
+                <span className="account-info_amount">
+                  {" "}
+                  {totalMealPrice[0]}{" "}
+                </span>
               </div>
             </div>
             <div className="col-4 ">
-              <div className="peach-gradient account-card animated bounceInDown">
-                <h1 className="card-header-title"> Total Due Amount </h1>
-                <span className="amount"> {totalDeu} </span>
+              <div className="bg-gray account-info">
+                <h1 className="account-info_title"> Total Due Amount </h1>
+                <span className="account-info_amount"> {totalDeu} </span>
               </div>
             </div>
             <div className="col-4">
-              <div className="purple-gradient account-card animated bounceInRight">
-                <h1 className="card-header-title"> Total Paid </h1>
-                <span className="amount">{totalPaid}</span>
+              <div className="bg-gray account-info">
+                <h1 className="account-info_title"> Total Paid </h1>
+                <span className="account-info_amount">{totalPaid}</span>
               </div>
             </div>
           </div>
-          <div className="row account mt-5">
+          <div className="row">
             <div className="col-4">
-              <div className="blue-gradient animated bounceInLeft account-card">
-                <h1 className="card-header-title">
+              <div className="bg-gray account-info">
+                <h1 className="account-info_title">
                   Todays Total Extra Meal Price
                 </h1>
-                <span className="amount"> {totalMealPrice[1]} </span>
+                <span className="account-info_amount">
+                  {" "}
+                  {totalMealPrice[1]}{" "}
+                </span>
               </div>
             </div>
-            <div className="col-4"></div>
             <div className="col-4">
-              <div className="purple-gradient account-card animated bounceInRight">
-                <h1 className="card-header-title">Todays Total Meal Price</h1>
-                <span className="amount">
+              <div className="bg-gray account-info">
+                <h1 className="account-info_title">Todays Total Meal Price</h1>
+                <span className="account-info_amount">
                   {totalMealPrice[1] + totalMealPrice[0]}
                 </span>
               </div>

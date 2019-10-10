@@ -7,10 +7,11 @@ import Paginate from "../../common/paginate/paginate";
 import _ from "lodash";
 import SearchBox from "../../form-elements/search";
 import Loader from "react-loader-spinner";
+import Spiner from "../../spiner/spiner";
 class FoodItemTable extends Component {
   state = {
     data: [],
-    pageSize: 8,
+    pageSize: 15,
     currentPage: 1,
     currentOrder: {
       name: "name",
@@ -117,32 +118,25 @@ class FoodItemTable extends Component {
     const food = Paginate(item, pageSize, currentPage);
     const filterdFood = _.orderBy(food, currentOrder.name, currentOrder.order);
     return (
-      <div className="section-card paddingLR">
-        {loader ? (
-          <div className="center">
-            <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-            <p className="mt-2">
-              <b> loading...</b>
-            </p>
-          </div>
-        ) : (
-          <React.Fragment>
-            <SearchBox onQuery={this.handelQuery} query={query} />
-            <Table
-              headerNames={this.headerNames}
-              onDelete={this.handelDelete}
-              data={filterdFood}
-              redirectTo={this.redirectTo}
-              orderBy={this.handelOrder}
-            />
-            <Pagination
-              onPageChange={this.handelPageChange}
-              pageSize={pageSize}
-              count={count}
-              currentPage={currentPage}
-            />
-          </React.Fragment>
-        )}
+      <div className="white-section">
+        <Spiner loader={loader} />
+        <div className="enter-padding">
+          <SearchBox onQuery={this.handelQuery} query={query} />
+          <Table
+            headerNames={this.headerNames}
+            onDelete={this.handelDelete}
+            data={filterdFood}
+            redirectTo={this.redirectTo}
+            orderBy={this.handelOrder}
+          />
+          <Pagination
+            onPageChange={this.handelPageChange}
+            pageSize={pageSize}
+            count={count}
+            currentPage={currentPage}
+          />
+        </div>
+        }
       </div>
     );
   }

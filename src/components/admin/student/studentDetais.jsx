@@ -6,7 +6,9 @@ import bootbox from "bootbox";
 class StudentDetails extends Component {
   state = {
     student: {},
-    loader: false
+    gender: "",
+    loader: false,
+    roomNo: ""
   };
 
   async componentDidMount() {
@@ -17,6 +19,8 @@ class StudentDetails extends Component {
       if (student) {
         this.setState({
           student,
+          gender: student.gender.name,
+          roomNo: student.sit.name,
           loader: false
         });
       }
@@ -44,12 +48,13 @@ class StudentDetails extends Component {
   };
 
   render() {
-    let { student, loader } = this.state;
+    let { student, loader, gender, roomNo } = this.state;
 
     return (
-      <div className="section-card">
-        <Spiner loader={loader} />
-        <div className="container">
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+
           <div className="row">
             <div className="col-3 animated bounceInDown">
               <div className="div roundedImg">
@@ -68,13 +73,16 @@ class StudentDetails extends Component {
                   <h1>Department:</h1> <span>{student.dept}</span>
                 </li>
                 <li className="text-info">
+                  <h1>Gender:</h1> <span>{gender}</span>
+                </li>
+                <li className="text-info">
                   <h1>Paid Amount:</h1> <span>{student.paidAmount}</span>
                 </li>
                 <li className="text-info">
                   <h1>Deu Amount</h1> <span>{student.deuAmount}</span>
                 </li>
                 <li className="text-info">
-                  <h1>Room Number:</h1> <span>{student.roomNo}</span>
+                  <h1>Room Number:</h1> <span>{roomNo}</span>
                 </li>
                 <li className="text-info">
                   <h1>Address:</h1>

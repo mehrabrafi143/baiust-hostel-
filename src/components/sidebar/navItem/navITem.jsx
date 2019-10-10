@@ -7,12 +7,12 @@ const NavIem = ({ item, showItem }) => {
     <li>
       <NavLink to={item.to}>
         <span>
-          <i className={item.icon} />
+          <i className={item.icon + " icon-nav"} />
           {" " + item.name + " "}
           {hasChild ? (
             <i
               onClick={() => showItem(item)}
-              className={item.iconClasses}
+              className={item.iconClasses + " icon-arrow"}
               aria-hidden="true"
             />
           ) : null}

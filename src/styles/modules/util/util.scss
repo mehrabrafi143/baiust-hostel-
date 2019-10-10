@@ -99,13 +99,8 @@ $mq-desktop: 1382px !default;
   font-size: 1rem;
 }
 
-td {
-  padding: 0.5rem;
-  font-weight: 400 !important;
-}
-
 .text-sm {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
   letter-spacing: 2px;
 }
 
@@ -118,4 +113,36 @@ td {
 
 .lSp-md {
   letter-spacing: 3px;
+}
+.text-lg {
+  font-size: 2rem;
+}
+
+.ml-10 {
+  margin-left: 10rem;
+}
+
+.bg-gray {
+  background-color: #e9ebee;
+}
+
+.width-body {
+  position: relative;
+  width: 74%;
+  left: 20%;
+  text-align: center;
+  padding-top: 5rem;
+  > * {
+    background-color: #fff;
+  }
+}
+.section-title {
+  text-align: left;
+  color: #385898;
+  border-top: 1px solid #324659;
+  padding: 1rem 0;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }

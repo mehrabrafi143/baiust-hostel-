@@ -17,40 +17,47 @@ import Account from "./account/account";
 import StudentPayForm from "./student/studentPayForm/studentPayform";
 import Notice from "./notice/notice";
 import NoticeShow from "./notice/noticeShow";
+import Sits from "./sit/sits";
+import SitForm from "./sit/sitForm";
+import ElectricBill from "./sit/electricBill/electricBill";
+import MonthlyBill from "./monthlyBill/monthlyBill";
 
 class Admin extends Component {
   state = {};
   render() {
     const userName = getUserName();
     return (
-      <div className="container-fluid">
+      <div className="full-width">
         <MainNavBar username={userName} />
-        <div className="row">
-          <div className="col-2 margin-let-de">
-            <SideBar />
-          </div>
-          <div className="col mt-5 ">
-            <Switch>
-              <Route path="/admin/dashboard" component={DashBoard} />
-              <Route path="/admin/account" component={Account} />
-              <Route path="/admin/addfood/:id" component={FoodIteFrom} />
-              <Route path="/admin/addfood" component={FoodIteFrom} />
-              <Route path="/admin/food" component={FoodItemTable} />
-              <Route path="/admin/foodmenu/:id" exact component={MenuDetails} />
-              <Route path="/admin/foodmenu" component={FoodMenu} />
-              <Route path="/admin/addmenu/:id" component={FoodMenuForm} />
-              <Route path="/admin/addmenu/" component={FoodMenuForm} />
-              <Route path="/admin/addstudent" component={RegistrationForm} />
-              <Route path="/admin/student/:id" component={StudentDetails} />
-              <Route path="/admin/student" component={StudentList} />
-              <Route path="/admin/notice/" component={Notice} />
-              <Route path="/admin/noticeShow/" component={NoticeShow} />
-              <Route path="/admin/pay/:id" component={StudentPayForm} />
-              <Route path="/admin/studentform/:id" component={StudentForm} />
-              <Redirect from="/admin" to="/admin/dashboard" exact />
-              <Redirect to="/not-found" />
-            </Switch>
-          </div>
+        <div className="width-sidebar">
+          <SideBar />
+        </div>
+        <div className="width-body">
+          <Switch>
+            <Route path="/admin/dashboard" component={DashBoard} />
+            <Route path="/admin/account" component={Account} />
+            <Route path="/admin/addfood/:id" component={FoodIteFrom} />
+            <Route path="/admin/addfood" component={FoodIteFrom} />
+            <Route path="/admin/food" component={FoodItemTable} />
+            <Route path="/admin/foodmenu/:id" exact component={MenuDetails} />
+            <Route path="/admin/foodmenu" component={FoodMenu} />
+            <Route path="/admin/addmenu/:id" component={FoodMenuForm} />
+            <Route path="/admin/addmenu/" component={FoodMenuForm} />
+            <Route path="/admin/addstudent" component={RegistrationForm} />
+            <Route path="/admin/student/:id" component={StudentDetails} />
+            <Route path="/admin/student" component={StudentList} />
+            <Route path="/admin/notice/" component={Notice} />
+            <Route path="/admin/noticeShow/" component={NoticeShow} />
+            <Route path="/admin/pay/:id" component={StudentPayForm} />
+            <Route path="/admin/studentform/:id" component={StudentForm} />
+            <Route path="/admin/sits" component={Sits} />
+            <Route path="/admin/sitsForm/:id" component={SitForm} />
+            <Route path="/admin/sitsForm" component={SitForm} />
+            <Route path="/admin/electrilbill" component={ElectricBill} />
+            <Route path="/admin/monthlyBill" component={MonthlyBill} />
+            <Redirect from="/admin" to="/admin/dashboard" exact />
+            <Redirect to="/not-found" />
+          </Switch>
         </div>
       </div>
     );

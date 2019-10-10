@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "../form/form";
 import { registration } from "../../service/authService/authService";
-import Loader from "react-loader-spinner";
+import Spiner from "./../spiner/spiner";
 
 class RegistrationForm extends Form {
   state = {
@@ -50,43 +50,36 @@ class RegistrationForm extends Form {
     const { data, errors, loader } = this.state;
 
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-6">
-            {loader ? (
-              <div className="full-body">
-                <div className="center">
-                  <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-                </div>
-              </div>
-            ) : null}
-            <h2> Registration Form </h2>
-            <p className="form-text text-danger">{this.state.genericErrors}</p>
-            <form className="form" onSubmit={this.handelSubmit}>
-              {this.renderInput(
-                "email",
-                data.email,
-                "Enter email",
-                errors.email,
-                "email"
-              )}
-              {this.renderInput(
-                "password",
-                data.password,
-                "Enter password",
-                errors.password,
-                "password"
-              )}
-              {this.renderInput(
-                "confirmPassword",
-                data.confirmPassword,
-                "Confirm password",
-                errors.confirmPassword,
-                "password"
-              )}
-              {this.renderButton("Register")}
-            </form>
-          </div>
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+
+          <h2 className="section-title"> Registration Form </h2>
+          <p className="form-text text-danger">{this.state.genericErrors}</p>
+          <form className="form" onSubmit={this.handelSubmit}>
+            {this.renderInput(
+              "email",
+              data.email,
+              "Enter email",
+              errors.email,
+              "email"
+            )}
+            {this.renderInput(
+              "password",
+              data.password,
+              "Enter password",
+              errors.password,
+              "password"
+            )}
+            {this.renderInput(
+              "confirmPassword",
+              data.confirmPassword,
+              "Confirm password",
+              errors.confirmPassword,
+              "password"
+            )}
+            {this.renderButton("Register")}
+          </form>
         </div>
       </div>
     );

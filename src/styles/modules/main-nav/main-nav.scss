@@ -1,0 +1,48 @@
+.main-nav {
+  position: fixed;
+  top: 0;
+  height: 4rem;
+  width: 100%;
+  background-color: #385898;
+  z-index: 999;
+
+  &_logo {
+    width: 20%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4rem;
+    display: inline-block;
+    a:link,
+    a:visited {
+      color: #fff;
+      display: inline;
+      font-size: 1.5rem;
+      word-spacing: 0.5rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      display: block;
+    }
+  }
+
+  ul {
+    padding-right: 7rem;
+    float: right;
+    list-style: none;
+    margin-top: -1rem;
+    text-align: right;
+    line-height: 6;
+    li {
+      display: inline-block;
+      margin-right: 2rem;
+      a:link,
+      a:visited {
+        color: #fff;
+        word-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

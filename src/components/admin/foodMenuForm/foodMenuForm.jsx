@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-dropdown-select";
 import { GetFoodItems } from "../../../service/FoodItemServices/foodItemServices";
 import Input from "./../../form-elements/input";
-import Loader from "react-loader-spinner";
+import Spiner from "./../../spiner/spiner";
 import {
   AddFoodMenu,
   GetFoodMenu
@@ -102,57 +102,47 @@ class FoodMenuForm extends Component {
     const { loader, data, foodItems, genericErrors } = this.state;
 
     return (
-      <div className="container mt-4">
-        <div className="row section-card section-card-md">
-          <div className="col-6">
-            {loader ? (
-              <div className="full-body">
-                <div className="center">
-                  <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-                </div>
-              </div>
-            ) : null}
-            <h2 className="mt-2"> Create Menu </h2>
-            <p className="text-danger">
-              {genericErrors ? genericErrors : null}
-            </p>
-            <form className="form" onSubmit={e => e.preventDefault()}>
-              <Input
-                name="name"
-                value={data.name}
-                label="Enter Name"
-                onChange={this.handelChange}
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+          <h2 className="section-title"> Create Menu </h2>
+          <p className="text-danger">{genericErrors ? genericErrors : null}</p>
+          <form className="form" onSubmit={e => e.preventDefault()}>
+            <Input
+              name="name"
+              value={data.name}
+              label="Enter Name"
+              onChange={this.handelChange}
+            />
+            <div className="form-group">
+              <Select
+                multi
+                create
+                placeholder="Select Food Items"
+                labelField="name"
+                valueField="id"
+                options={foodItems}
+                values={this.state.selectedItems}
+                onChange={v => this.setValue(v)}
+                className="form-input"
               />
-              <div className="form-group">
-                <Select
-                  multi
-                  create
-                  placeholder="Select Food Items"
-                  labelField="name"
-                  valueField="id"
-                  options={foodItems}
-                  values={this.state.selectedItems}
-                  onChange={v => this.setValue(v)}
-                  className="form-input"
-                />
-              </div>
-              <Input
-                name="servicePrice"
-                value={data.servicePrice}
-                error={this.state.servicePriceError}
-                label="Service Price"
-                onChange={this.handelChangeServicePrice}
-              />
-              <button
-                className="btn btn-primary mt-3"
-                type="submit"
-                disabled={!this.validate()}
-                onClick={this.doSubmit}
-              >
-                Add
-              </button>
-            </form>
-          </div>
+            </div>
+            <Input
+              name="servicePrice"
+              value={data.servicePrice}
+              error={this.state.servicePriceError}
+              label="Service Price"
+              onChange={this.handelChangeServicePrice}
+            />
+            <button
+              className="btn btn-primary mt-3"
+              type="submit"
+              disabled={!this.validate()}
+              onClick={this.doSubmit}
+            >
+              Add
+            </button>
+          </form>
         </div>
       </div>
     );

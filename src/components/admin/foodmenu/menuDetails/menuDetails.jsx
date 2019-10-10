@@ -94,20 +94,22 @@ class MenuDetails extends Component {
 
     const foodItems = _.orderBy(data, currentOrder.name, currentOrder.order);
     return (
-      <div className="section-card section-card-md">
-        <Spiner loader={loader} />
-        <div className="text-center section-title">
-          <Link to={"/admin/addmenu/" + menu.id}>{menu.name}</Link>
-        </div>
-        <Table
-          headerNames={this.headerNames}
-          onDelete={this.handelDelete}
-          data={foodItems}
-          redirectTo={this.redirectTo}
-          orderBy={this.handelOrder}
-        />
-        <div>
-          Total Price <bold className="price">{menu.fullPrice}</bold>
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+          <div className="text-center section-title">
+            <Link to={"/admin/addmenu/" + menu.id}>{menu.name}</Link>
+          </div>
+          <Table
+            headerNames={this.headerNames}
+            onDelete={this.handelDelete}
+            data={foodItems}
+            redirectTo={this.redirectTo}
+            orderBy={this.handelOrder}
+          />
+          <div>
+            Total Price <bold className="price">{menu.fullPrice}</bold>
+          </div>
         </div>
       </div>
     );

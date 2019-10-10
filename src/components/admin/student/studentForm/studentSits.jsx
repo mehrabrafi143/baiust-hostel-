@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Loader } from "react-loader-spinner";
 
-export class Autocomplete extends Component {
+export class StudentSit extends Component {
   render() {
     const {
       onChangeAuto,
@@ -75,4 +73,4 @@ export class Autocomplete extends Component {
   }
 }
 
-export default Autocomplete;
+export default StudentSit;

@@ -16,7 +16,18 @@ class Sidebar extends Component {
       {
         name: "Account Information",
         icon: "fa fa-info fa-lg",
-        child: [],
+        child: [
+          {
+            name: "Informations",
+            icon: "fa fa-list ",
+            to: "/admin/account"
+          },
+          {
+            name: "Monthly Price",
+            icon: "fa fa-user ",
+            to: "/admin/monthlyBill"
+          }
+        ],
         to: "/admin/account/",
         iconClasses: "fa fa-sort-desc text-right-icon"
       },
@@ -64,6 +75,21 @@ class Sidebar extends Component {
         show: false,
         to: "/admin/food",
         iconClasses: "fa fa-sort-desc text-right-icon"
+      },
+      {
+        name: "Site Management",
+        icon: "fa fa-building fa-lg",
+        child: [
+          {
+            name: "Sit Informations",
+            to: "/admin/sits",
+            icon: "fa fa-map"
+          },
+          { name: "Add Sit", to: "/admin/sitsform", icon: "fa fa-plus-circle" }
+        ],
+        show: false,
+        to: "/admin/sits",
+        iconClasses: "fa fa-sort-desc text-right-icon"
       }
     ]
   };
@@ -87,9 +113,6 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
-        <div className="sidebar-logo">
-          <Link to="/admin">BAIUST HOSTEL</Link>
-        </div>
         <ul>
           {this.state.navItem.map(i => (
             <NavIem key={i.name} item={i} showItem={this.handelShow} />

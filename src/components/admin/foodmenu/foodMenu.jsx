@@ -7,7 +7,6 @@ import {
 } from "./../../../service/foodMenuService/foodMenuService";
 import Pagination from "../../pagination/pagination";
 import Paginate from "../../common/paginate/paginate";
-import Loader from "react-loader-spinner";
 import bootbox from "bootbox";
 import $ from "jquery";
 import {
@@ -15,6 +14,7 @@ import {
   ExtraMeal,
   UpdateMeal
 } from "../../../service/mealServices/mealServices";
+import Spiner from "./../../spiner/spiner";
 class FoodMenu extends Component {
   state = {
     data: [],
@@ -158,40 +158,31 @@ class FoodMenu extends Component {
 
     const menus = Paginate(item, pageSize, currentPage);
     return (
-      <div className="section-card">
-        {loader ? (
-          <div className="full-body">
-            <div className="center">
-              <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-              <p className="mt-2">
-                <b> loading...</b>
-              </p>
-            </div>
-          </div>
-        ) : (
-          <React.Fragment>
-            <SearchBox onQuery={this.handelQuery} query={query} />
-            <div className="mt-3 flex">
-              {menus.map(menu => (
-                <MenuCard
-                  menu={menu}
-                  mealMenus={mealMenus}
-                  handelAssign={this.handelAssign}
-                  handelDelete={this.handelDelete}
-                  handleExtra={this.handleExtra}
-                />
-              ))}
-            </div>
-            <div className="ml-5 70 margin-top-lg">
-              <Pagination
-                onPageChange={this.handelPageChange}
-                pageSize={pageSize}
-                count={count}
-                currentPage={currentPage}
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={this.state.loader} />
+          <h2 className="section-title"> Food Menus</h2>
+          <SearchBox onQuery={this.handelQuery} query={query} />
+          <div className="flex">
+            {menus.map(menu => (
+              <MenuCard
+                menu={menu}
+                mealMenus={mealMenus}
+                handelAssign={this.handelAssign}
+                handelDelete={this.handelDelete}
+                handleExtra={this.handleExtra}
               />
-            </div>
-          </React.Fragment>
-        )}
+            ))}
+          </div>
+          <div className="ml-5 mt-5">
+            <Pagination
+              onPageChange={this.handelPageChange}
+              pageSize={pageSize}
+              count={count}
+              currentPage={currentPage}
+            />
+          </div>
+        </div>
       </div>
     );
   }

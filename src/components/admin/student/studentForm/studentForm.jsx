@@ -5,11 +5,10 @@ import {
   AddStudent,
   GetStudentById
 } from "./../../../../service/studentServices/studentServices";
-import Loader from "react-loader-spinner";
 import Gender from "./../../gender/gender";
-import FemaleRoom from "./femaleRoom";
-import { GetSits } from "./../../../../service/sitServices/sitServices";
-import Autocomplete from "./try";
+import { GetSitNameByGender } from "./../../../../service/sitServices/sitServices";
+import StudentSit from "./studentSits";
+import Spiner from "../../../spiner/spiner";
 
 class StudentForm extends Form {
   state = {
@@ -39,6 +38,7 @@ class StudentForm extends Form {
     sex: "",
     building: ""
   };
+
   //start autosuggation
 
   onChangeAuto = e => {
@@ -107,7 +107,9 @@ class StudentForm extends Form {
       this.setState({ sex: " Girls ", building: " Eighth floor building " });
     }
 
-    const { data: suggestions } = await GetSits(currentTarget["value"]);
+    const { data: suggestions } = await GetSitNameByGender(
+      currentTarget["value"]
+    );
     this.setState({ suggestions });
   };
 
@@ -152,6 +154,7 @@ class StudentForm extends Form {
     try {
       const { data } = this.state;
       data.userAccountId = this.props.match.params.id;
+      data.genderId = this.state.gender;
       await AddStudent(data);
       this.props.history.push("/admin/student");
     } catch (error) {
@@ -176,67 +179,54 @@ class StudentForm extends Form {
       building
     } = this.state;
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-7">
-            {loader ? (
-              <div className="full-body">
-                <div className="center">
-                  <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-                </div>
-              </div>
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+          <h2 className="section-title"> Information Form </h2>
+          <p className="form-text text-danger">{this.state.genericErrors}</p>
+          <form className="form" onSubmit={this.handelSubmit}>
+            {this.renderInput(
+              "name",
+              data.name,
+              "Enter Full Name",
+              errors.name
+            )}
+            {this.renderInput("roll", data.roll, "Enter Id", errors.roll)}
+            {this.renderInput("dept", data.dept, "Department", errors.dept)}
+            {this.renderInput(
+              "phoneNumber",
+              data.phoneNumber,
+              "Phone Number",
+              errors.phoneNumber
+            )}
+            {this.renderInput(
+              "address",
+              data.address,
+              "Address",
+              errors.address
+            )}
+            {<Gender hadelGenderChange={this.hadelGenderChange} />}
+
+            {gender ? (
+              <StudentSit
+                onClickAuto={this.onClickAuto}
+                onChangeAuto={this.onChangeAuto}
+                onKeyDownAuto={this.onKeyDownAuto}
+                suggestions={this.state.suggestions}
+                showSuggestions={showSuggestions}
+                activeSuggestion={activeSuggestion}
+                filteredSuggestions={filteredSuggestions}
+                renderInput={this.renderInput}
+                value={data.roomNo}
+                error={errors.roomNo}
+                suggestions={suggestions}
+                sex={sex}
+                building={building}
+              />
             ) : null}
-            <h2> Information Form </h2>
-            <p className="form-text text-danger">{this.state.genericErrors}</p>
-            <form className="form" onSubmit={this.handelSubmit}>
-              {this.renderInput(
-                "name",
-                data.name,
-                "Enter Full Name",
-                errors.name
-              )}
-              {this.renderInput("roll", data.roll, "Enter Id", errors.roll)}
-              {this.renderInput("dept", data.dept, "Department", errors.dept)}
-              {this.renderInput(
-                "phoneNumber",
-                data.phoneNumber,
-                "Phone Number",
-                errors.phoneNumber
-              )}
-              {this.renderInput(
-                "address",
-                data.address,
-                "Address",
-                errors.address
-              )}
-              {
-                <Gender
-                  gender={gender}
-                  hadelGenderChange={this.hadelGenderChange}
-                />
-              }
 
-              {gender ? (
-                <Autocomplete
-                  onClickAuto={this.onClickAuto}
-                  onChangeAuto={this.onChangeAuto}
-                  onKeyDownAuto={this.onKeyDownAuto}
-                  suggestions={this.state.suggestions}
-                  showSuggestions={showSuggestions}
-                  activeSuggestion={activeSuggestion}
-                  filteredSuggestions={filteredSuggestions}
-                  renderInput={this.renderInput}
-                  value={data.roomNo}
-                  error={errors.roomNo}
-                  suggestions={suggestions}
-                  sex={sex}
-                  building={building}
-                />
-              ) : null}
-
-              {this.renderButton("Save")}
-            </form>
-          </div>
+            {this.renderButton("Save")}
+          </form>
         </div>
       </div>
     );

@@ -18,7 +18,6 @@ class Gender extends Component {
             Male
           </label>
         </div>
-
         <div className="form-check form-check-inline">
           <input
             className="form-check-input position-static"

@@ -12,3 +12,7 @@ export function GetDeu() {
 export function GetPaid() {
   return http.get(apiEndpoint + "/api/totalpaid");
 }
+
+export function AddMonthlyBill(data) {
+  return http.post(apiEndpoint + "/api/monthlyBill", data);
+}

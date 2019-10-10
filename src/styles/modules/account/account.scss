@@ -1,35 +1,15 @@
-.purple-gradient {
-  background: linear-gradient(83deg, #6facfd, #4740db) !important;
-}
-.peach-gradient {
-  background: linear-gradient(40deg, #1e6cc1, #8d89f1) !important;
-}
-.blue-gradient {
-  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
-}
-
-.account {
-  text-align: center;
-  position: relative;
-  h1 {
-    color: #fff;
-    padding-top: 3rem;
+.account-info {
+  height: 15rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  &_title {
     font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    word-spacing: 3px;
+    font-weight: 400;
+    color: #385898;
+    padding-bottom: 3rem;
   }
-  &-card {
-    height: 15rem;
-    border-radius: 0.6rem;
-
-    span {
-      color: #fff;
-      font-size: 2.3rem;
-      font-weight: 300;
-      font-family: "Raleway", sans-serif;
-      display: block;
-      margin-top: 2rem;
-    }
+  &_amount {
+    color: #1d2129;
+    font-size: 1.5rem;
   }
 }

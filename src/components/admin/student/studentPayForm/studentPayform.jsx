@@ -1,8 +1,8 @@
 import React from "react";
 import Form from "./../../../form/form";
 import Joi from "joi-browser";
-import Loader from "react-loader-spinner";
 import { StudentsPay } from "./../../../../service/studentsPayService/studentsPay";
+import Spiner from "./../../../spiner/spiner";
 
 class StudentPayForm extends Form {
   state = {
@@ -40,28 +40,20 @@ class StudentPayForm extends Form {
   render() {
     const { data, errors, loader } = this.state;
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-6">
-            {loader ? (
-              <div className="full-body">
-                <div className="center">
-                  <Loader type="Oval" color="#1B3A5E" height={60} width={60} />
-                </div>
-              </div>
-            ) : null}
-            <h2> Paying Form </h2>
-            <p className="form-text text-danger">{this.state.genericErrors}</p>
-            <form className="form" onSubmit={this.handelSubmit}>
-              {this.renderInput(
-                "amount",
-                data.amount,
-                "Enter Amount",
-                errors.amount
-              )}
-              {this.renderButton("Save")}
-            </form>
-          </div>
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+          <h2 className="section-title"> Paying Form </h2>
+          <p className="form-text text-danger">{this.state.genericErrors}</p>
+          <form className="form" onSubmit={this.handelSubmit}>
+            {this.renderInput(
+              "amount",
+              data.amount,
+              "Enter Amount",
+              errors.amount
+            )}
+            {this.renderButton("Save")}
+          </form>
         </div>
       </div>
     );

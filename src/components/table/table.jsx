@@ -8,7 +8,7 @@ class Table extends Component {
   render() {
     const { headerNames, data, onDelete, redirectTo, orderBy } = this.props;
     return (
-      <table className="table mt-4">
+      <table className="table">
         <TableHead headerNames={headerNames} orderBy={orderBy} />
         <TableBody
           headerNames={headerNames}
