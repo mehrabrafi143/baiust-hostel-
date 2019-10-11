@@ -95,7 +95,7 @@ class FoodIteFrom extends Form {
       <div className="white-section">
         <Spiner loader={loader} />
         <div className="enter-padding">
-          <h2 className="mt-2"> Add Food Item </h2>
+          <h2 className="section-title"> Add Food Item </h2>
           <p className="form-text text-danger">{this.state.genericErrors}</p>
           <form className="form" onSubmit={this.handelSubmit}>
             {this.renderInput(

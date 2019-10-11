@@ -21,6 +21,7 @@ import Sits from "./sit/sits";
 import SitForm from "./sit/sitForm";
 import ElectricBill from "./sit/electricBill/electricBill";
 import MonthlyBill from "./monthlyBill/monthlyBill";
+import ChangePasswordAdmin from "./../common/changePassword/changePasswordAdmin";
 
 class Admin extends Component {
   state = {};
@@ -55,6 +56,7 @@ class Admin extends Component {
             <Route path="/admin/sitsForm" component={SitForm} />
             <Route path="/admin/electrilbill" component={ElectricBill} />
             <Route path="/admin/monthlyBill" component={MonthlyBill} />
+            <Route path="/admin/password" component={ChangePasswordAdmin} />
             <Redirect from="/admin" to="/admin/dashboard" exact />
             <Redirect to="/not-found" />
           </Switch>

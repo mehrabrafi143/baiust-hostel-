@@ -121,6 +121,7 @@ class FoodItemTable extends Component {
       <div className="white-section">
         <Spiner loader={loader} />
         <div className="enter-padding">
+          <div className="section-title">Food Items</div>
           <SearchBox onQuery={this.handelQuery} query={query} />
           <Table
             headerNames={this.headerNames}

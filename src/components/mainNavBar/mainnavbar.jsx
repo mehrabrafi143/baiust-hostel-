@@ -16,7 +16,7 @@ const MainNavBar = ({ username }) => {
               </Link>
             </li>
             <li>
-              <Link to="">
+              <Link to="/admin/password">
                 <i class="fa fa-key" aria-hidden="true"></i> Change Password
               </Link>
             </li>

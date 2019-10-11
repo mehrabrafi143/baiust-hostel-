@@ -25,3 +25,7 @@ export function AddSit(data) {
 export function ElectricBillPay(data) {
   return http.post(apiEndpoint + "/api/electricBill", data);
 }
+
+export function AvailableSite() {
+  return http.get(apiEndpoint + "/api/availablesits/");
+}
