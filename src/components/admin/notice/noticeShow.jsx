@@ -36,10 +36,9 @@ class NoticeShow extends Form {
 
   handelSubmit = e => {
     e.preventDefault();
-    this.dosubmit();
   };
 
-  dosubmit = async () => {
+  submit = async () => {
     try {
       const { notice } = this.state;
       if (notice.title.length < 3 || notice.description.length < 10) {
@@ -86,7 +85,12 @@ class NoticeShow extends Form {
                 onChange={this.handelChange}
               ></textarea>
             </div>
-            <div className={btnClasses}>{this.renderButton("Save")}</div>
+            <button
+              className={btnClasses + " btn btn-primary"}
+              onClick={() => this.submit(notice)}
+            >
+              Save
+            </button>
           </form>
         </div>
         <div className="col-3">

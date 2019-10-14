@@ -30,3 +30,7 @@ export function TakenMeal(id) {
 export function ExtraMeal(data) {
   return http.post(api + "/extra/", data);
 }
+
+export function MealCount() {
+  return http.get(apiEndpoint + "/api/meal/meals");
+}

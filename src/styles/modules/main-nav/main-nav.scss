@@ -38,14 +38,25 @@
     line-height: 6;
     li {
       display: inline-block;
-      margin-right: 2rem;
-      a:link,
-      a:visited {
-        color: #fff;
-        word-spacing: 3px;
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 0.9rem;
+      margin-right: 5rem;
+      a {
+        &:link,
+        &:visited {
+          color: #fff;
+          word-spacing: 3px;
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 0.9rem;
+          display: inline-block;
+        }
+        i {
+          display: inline-block;
+          position: absolute;
+          color: #282828;
+          font-size: 1.7rem;
+          top: 2.2rem;
+          margin-left: -2.5rem;
+        }
       }
     }
   }

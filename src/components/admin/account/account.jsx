@@ -34,52 +34,32 @@ class Account extends Component {
     return (
       <div className="white-section">
         <div className="enter-padding">
-          <div className="row">
-            <div className="col-4">
-              <div className="bg-gray account-info">
-                <h1 className="account-info_title">
-                  Todays Students Total Meal Price
-                </h1>
-                <span className="account-info_amount">
-                  {" "}
-                  {totalMealPrice[0]}{" "}
-                </span>
+          <h1 className="section-title">In Total Information</h1>
+          <ul className="dashboard-section">
+            <li>
+              <div className="section-title">Total Due Amount</div>
+              <p>{totalDeu}</p>
+            </li>
+            <li>
+              <div className="section-title">Total Paid Amout</div>
+              <p>{totalPaid}</p>
+            </li>
+          </ul>
+          <h1 className="section-title margin-top-lg">
+            Today's Meal Overall Price
+          </h1>
+          <ul className="dashboard-section">
+            <li>
+              <div className="section-title">Today's Total Meal Price</div>
+              <p>{totalMealPrice[0]}</p>
+            </li>
+            <li>
+              <div className="section-title">
+                Today's Total Extra Meal PRice
               </div>
-            </div>
-            <div className="col-4 ">
-              <div className="bg-gray account-info">
-                <h1 className="account-info_title"> Total Due Amount </h1>
-                <span className="account-info_amount"> {totalDeu} </span>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bg-gray account-info">
-                <h1 className="account-info_title"> Total Paid </h1>
-                <span className="account-info_amount">{totalPaid}</span>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">
-              <div className="bg-gray account-info">
-                <h1 className="account-info_title">
-                  Todays Total Extra Meal Price
-                </h1>
-                <span className="account-info_amount">
-                  {" "}
-                  {totalMealPrice[1]}{" "}
-                </span>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bg-gray account-info">
-                <h1 className="account-info_title">Todays Total Meal Price</h1>
-                <span className="account-info_amount">
-                  {totalMealPrice[1] + totalMealPrice[0]}
-                </span>
-              </div>
-            </div>
-          </div>
+              <p>{totalMealPrice[1]}</p>
+            </li>
+          </ul>
         </div>
       </div>
     );

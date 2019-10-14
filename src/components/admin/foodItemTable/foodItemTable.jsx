@@ -11,7 +11,7 @@ import Spiner from "../../spiner/spiner";
 class FoodItemTable extends Component {
   state = {
     data: [],
-    pageSize: 15,
+    pageSize: 10,
     currentPage: 1,
     currentOrder: {
       name: "name",

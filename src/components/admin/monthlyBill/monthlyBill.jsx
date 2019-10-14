@@ -1,8 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
-import { AddMonthlyBill } from "../../../service/accountInfo/accountInfo";
 import Form from "./../../form/form";
 import Spiner from "../../spiner/spiner";
+import { AddMonthlyBill } from "./../../../service/monthlyBillService/monthlyBillService";
 
 class MonthlyBill extends Form {
   state = {
@@ -34,7 +34,6 @@ class MonthlyBill extends Form {
     this.setState({ loader: true });
     try {
       const { data } = this.state;
-      data.id = 1;
       const { data: res } = await AddMonthlyBill(data);
       this.props.history.push("/admin/dashboard/");
     } catch (error) {
@@ -51,7 +50,7 @@ class MonthlyBill extends Form {
         <div className="enter-padding">
           <Spiner loader={loader} />
 
-          <h2 className="section-title"> Registration Form </h2>
+          <h2 className="section-title"> Monthly Bill </h2>
           <p className="form-text text-danger">{this.state.genericErrors}</p>
           <form className="form" onSubmit={this.handelSubmit}>
             {this.renderInput(
@@ -68,7 +67,7 @@ class MonthlyBill extends Form {
               errors.servicePrice,
               "servicePrice"
             )}
-            {this.renderButton("Register")}
+            {this.renderButton("Save")}
           </form>
         </div>
       </div>

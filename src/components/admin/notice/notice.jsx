@@ -9,6 +9,7 @@ import {
 import Spiner from "../../spiner/spiner";
 import NoticeShow from "./noticeShow";
 import bootbox from "bootbox";
+import { toast } from "react-toastify";
 
 class Notice extends Form {
   state = {
@@ -37,40 +38,47 @@ class Notice extends Form {
       .min(5)
   };
 
+  handelSubmit = e => {
+    e.preventDefault();
+  };
+
   handelDelete = id => {
     bootbox.confirm("Are you sure?", async res => {
       const { notices: oldNotices } = this.state;
       if (res) {
+        this.setState({ loader: true });
+
+        const { data: result } = await DeleteNotice(id);
         const notices = oldNotices.filter(n => n.id !== id);
-        this.setState({ notices });
-        try {
-          await DeleteNotice(id);
-        } catch (error) {
-          this.setState({ notices: oldNotices });
+        if (result) {
+          this.setState({ notices, loader: false });
+        } else {
+          toast.error("something went wrong");
+          this.setState({ notices: oldNotices, loader: false });
         }
       }
     });
   };
 
-  dosubmit = async () => {
+  submit = async () => {
     this.setState({ loader: true });
 
     try {
       const { data, notices } = this.state;
-
-      notices.push(data);
-
-      const { data: res } = await AddNotice(data);
       const clear = {
         title: "",
         description: ""
       };
 
-      if (res) this.setState({ loader: false, notices, data: clear });
+      const { data: res } = await AddNotice(data);
+
+      if (res) {
+        notices.push(res);
+        this.setState({ loader: false, notices, data: clear });
+      }
     } catch (error) {
       this.setState({
-        loader: false,
-        genericErrors: error.response.data.message
+        loader: false
       });
     }
   };
@@ -91,7 +99,7 @@ class Notice extends Form {
       <div className="white-section">
         <div className="enter-padding">
           <Spiner loader={loader} />
-          <h2 className="section-title"> Create Menu </h2>
+          <h2 className="section-title"> Post A Notice</h2>
           <p className="form-text text-danger">{this.state.genericErrors}</p>
           <form className="form" onSubmit={this.handelSubmit}>
             {this.renderInput("title", data.title, "Enter Title", errors.title)}
@@ -102,7 +110,9 @@ class Notice extends Form {
               "Enter Description",
               errors.description
             )}
-            {this.renderButton("Save")}
+            <button className="btn btn-primary" onClick={this.submit}>
+              Create
+            </button>
           </form>
           <div className="margin-top-lg">
             {notices ? (

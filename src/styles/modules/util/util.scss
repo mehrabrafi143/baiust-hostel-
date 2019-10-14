@@ -126,6 +126,16 @@ $mq-desktop: 1382px !default;
   background-color: #e9ebee;
 }
 
+td {
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+}
+
+th {
+  font-size: 1.2rem !important;
+  font-weight: 400 !important;
+}
+
 .width-body {
   position: relative;
   width: 74%;
@@ -145,21 +155,24 @@ $mq-desktop: 1382px !default;
   font-size: 3rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 .noticeBtn {
   &:link,
   &:active,
   &:visited {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     display: inline-block;
     color: #fff;
     cursor: pointer;
     background-color: #385898;
-    padding: 10px;
+    padding: 1.2rem;
     text-align: right;
-    margin-right: 10rem;
     text-decoration: none;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    border-radius: 5px;
   }
 }
 
@@ -168,14 +181,20 @@ $mq-desktop: 1382px !default;
   list-style: none;
   margin: 0;
   padding: 0;
-  padding-top: 4rem;
+  padding-top: 6rem;
   li {
     display: inline-block;
     width: 50%;
+    letter-spacing: 4px;
+    div {
+      letter-spacing: 5px !important;
+      font-weight: 500;
+    }
 
     p {
       font-size: 5rem;
       font-family: Arial, Helvetica, sans-serif;
+      color: #385898;
     }
   }
 }

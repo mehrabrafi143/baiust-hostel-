@@ -27,11 +27,15 @@ class ElectricBill extends Form {
 
     try {
       const data = {
-        studentId: this.props.match.params.id,
+        roomId: this.props.match.params.id,
         amount: this.state.data.amount
       };
       const { data: res } = await ElectricBillPay(data);
-      if (res) this.props.history.push("/admin/sits");
+      if (res) {
+        this.setState({ loader: false });
+
+        this.props.history.push("/admin/sits");
+      }
     } catch (error) {
       this.setState({
         loader: false
@@ -42,22 +46,20 @@ class ElectricBill extends Form {
   render() {
     const { data, errors, loader } = this.state;
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-6">
-            <Spiner loader={loader} />
-            <h2> Electricity Bill </h2>
-            <p className="form-text text-danger">{this.state.genericErrors}</p>
-            <form className="form" onSubmit={this.handelSubmit}>
-              {this.renderInput(
-                "amount",
-                data.amount,
-                "Enter Amount",
-                errors.amount
-              )}
-              {this.renderButton("Save")}
-            </form>
-          </div>
+      <div className="white-section">
+        <div className="enter-padding">
+          <Spiner loader={loader} />
+          <h2 className="section-title"> Electricity Bill </h2>
+          <p className="form-text text-danger">{this.state.genericErrors}</p>
+          <form className="form" onSubmit={this.handelSubmit}>
+            {this.renderInput(
+              "amount",
+              data.amount,
+              "Enter Amount",
+              errors.amount
+            )}
+            {this.renderButton("Save")}
+          </form>
         </div>
       </div>
     );

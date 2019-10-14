@@ -22,9 +22,17 @@ import SitForm from "./sit/sitForm";
 import ElectricBill from "./sit/electricBill/electricBill";
 import MonthlyBill from "./monthlyBill/monthlyBill";
 import ChangePasswordAdmin from "./../common/changePassword/changePasswordAdmin";
+import { AddStudentMonthlyBills } from "../../service/monthlyBillService/monthlyBillService";
 
 class Admin extends Component {
   state = {};
+  async componentDidMount() {
+    const d = new Date();
+    const date = d.getDate();
+    if (date === 1) {
+      await AddStudentMonthlyBills();
+    }
+  }
   render() {
     const userName = getUserName();
     return (
@@ -54,7 +62,7 @@ class Admin extends Component {
             <Route path="/admin/sits" component={Sits} />
             <Route path="/admin/sitsForm/:id" component={SitForm} />
             <Route path="/admin/sitsForm" component={SitForm} />
-            <Route path="/admin/electrilbill" component={ElectricBill} />
+            <Route path="/admin/electrilbill/:id" component={ElectricBill} />
             <Route path="/admin/monthlyBill" component={MonthlyBill} />
             <Route path="/admin/password" component={ChangePasswordAdmin} />
             <Redirect from="/admin" to="/admin/dashboard" exact />

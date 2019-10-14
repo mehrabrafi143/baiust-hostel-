@@ -1,15 +1,18 @@
 .account-info {
-  height: 15rem;
+  height: 17rem;
   margin-top: 3rem;
   padding: 2rem;
+  background-color: #4269b6;
+
   &_title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
-    color: #385898;
+    color: #fff;
     padding-bottom: 3rem;
+    letter-spacing: 4px;
   }
   &_amount {
-    color: #1d2129;
-    font-size: 1.5rem;
+    color: #fff;
+    font-size: 2rem;
   }
 }
