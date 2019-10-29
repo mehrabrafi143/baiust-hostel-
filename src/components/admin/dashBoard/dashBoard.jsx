@@ -19,60 +19,90 @@ class DashBoard extends Component {
 
   render() {
     const { sits, mealsCount } = this.state;
+
     return (
-      <div className="white-section">
-        <div className="enter-padding">
-          <div className="">
-            <Link to="/admin/notice" className="noticeBtn">
-              Post A Notice
-            </Link>
+      <React.Fragment>
+        <div className=" tranparent enter-padding-lg">
+          <div className=" row">
+            <div className="section-top-title">
+              {" "}
+              <i className="fa fa-home"></i> Dashboard
+            </div>
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">Male Seat Capacity </div>
+                <div className="generic-card__body">
+                  {sits[0]}
+                  <p>Male Seats</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">Available Male Seats</div>
+                <div className="generic-card__body">
+                  {sits[1]}
+                  <p>Seats in total</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">Female Seat Capacity</div>
+                <div className="generic-card__body">
+                  {sits[2]}
+                  <p>Female Seats</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="section-title mt-5">Sit's Count </div>
-
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">Male Sit Capasity</div>
-              <p>{sits[0]}</p>
-            </li>
-            <li>
-              <div className="section-title">Available Male Sits</div>
-              <p>{sits[1]}</p>
-            </li>
-          </ul>
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">Female Sit Capasity</div>
-              <p>{sits[2]}</p>
-            </li>
-            <li>
-              <div className="section-title">Available Female Sits</div>
-              <p>{sits[3]}</p>
-            </li>
-          </ul>
-
-          <div className="section-title margin-top-lg">
-            Today's Taken Meal's Count{" "}
+          <div className="tranparent row  mt-5">
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">
+                  Available Female Seats
+                </div>
+                <div className="generic-card__body">
+                  {sits[3]}
+                  <p>Seats in total</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">today's Total breakfast</div>
-              <p>{mealsCount[0]}</p>
-            </li>
-            <li>
-              <div className="section-title">today's Total launch</div>
-              <p>{mealsCount[1]}</p>
-            </li>
-          </ul>
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">today's Total dinner</div>
-              <p>{mealsCount[2]}</p>
-            </li>
-            <li></li>
-          </ul>
+          <div className="tranparent row  margin-top-lg">
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">
+                  today's Total breakfast
+                </div>
+                <div className="generic-card__body">
+                  {mealsCount[0]}
+                  <p> In total</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">today's Total lunch</div>
+                <div className="generic-card__body">
+                  {mealsCount[1]}
+                  <p>In total</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <div className="generic-card">
+                <div className="generic-card__title">today's Total dinner</div>
+                <div className="generic-card__body">
+                  {mealsCount[2]}
+                  <p>In total</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import Table from "../../table/table";
-import { GetFoodItems } from "../../../service/FoodItemServices/foodItemServices";
-import { DeleteItem } from "../../../service/FoodItemServices/foodItemServices";
 import Pagination from "../../pagination/pagination";
 import Paginate from "../../common/paginate/paginate";
 import _ from "lodash";
 import SearchBox from "../../form-elements/search";
-import Loader from "react-loader-spinner";
 import Spiner from "../../spiner/spiner";
-class FoodItemTable extends Component {
+import { GetMealTokens } from "./../../../service/mealServices/mealServices";
+
+class MealTokens extends Component {
   state = {
     data: [],
-    pageSize: 12,
+    pageSize: 10,
     currentPage: 1,
     currentOrder: {
       name: "name",
@@ -22,54 +21,15 @@ class FoodItemTable extends Component {
   };
 
   headerNames = [
-    { label: "Food Name", path: "name" },
-    { label: "Price/Kg", path: "pricePerKg" },
-    { label: "People/Kg", path: "peoplePerKg" },
-    { label: "Price/Head", path: "pricePerHead" },
-    {
-      key: "delete",
-      content: item => (
-        <span
-          className="delete-btn text-sm"
-          onClick={() => this.handelDelete(item)}
-        >
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </span>
-      )
-    },
-    {
-      key: "update",
-      content: item => (
-        <span
-          className="update-btn text-sm"
-          onClick={() => this.redirectTo(item)}
-        >
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        </span>
-      )
-    }
+    { label: "Student Name", path: "studentName" },
+    { label: "Student Id", path: "studentId" },
+    { label: "Meal Type", path: "mealId" },
+    { label: "Token", path: "token" }
   ];
-
-  handelDelete = async item => {
-    const originalState = this.state.data;
-    try {
-      let data = [...this.state.data];
-      data = data.filter(d => d.id !== item.id);
-      this.setState({ data });
-      await DeleteItem(item.id);
-    } catch (error) {
-      this.setState({ data: originalState, loader: false });
-      console.log(error);
-    }
-  };
-
-  redirectTo = item => {
-    this.props.history.push("/admin/addfood/" + item.id);
-  };
 
   async componentDidMount() {
     try {
-      const { data } = await GetFoodItems();
+      const { data } = await GetMealTokens();
       if (data) this.setState({ data, loader: false });
     } catch (error) {
       console.log(error.response);
@@ -121,7 +81,7 @@ class FoodItemTable extends Component {
       <div className="white-section">
         <Spiner loader={loader} />
         <div className="enter-padding">
-          <div className="section-title">Food Items</div>
+          <div className="section-title">Meal Tokens</div>
           <SearchBox onQuery={this.handelQuery} query={query} />
           <Table
             headerNames={this.headerNames}
@@ -143,4 +103,4 @@ class FoodItemTable extends Component {
   }
 }
 
-export default FoodItemTable;
+export default MealTokens;

@@ -51,9 +51,9 @@ class UserNavbar extends Component {
               />
             ) : null}
             <li className="nav-item ">
-              <NavLink className="nav-link" to="/user/meal">
+              <Link className="nav-link" to="/user/meal">
                 Take Meal
-              </NavLink>
+              </Link>
             </li>
 
             <li className="nav-item dropdown">

@@ -73,7 +73,7 @@ class SitForm extends Form {
       <div className="white-section">
         <div className="enter-padding">
           <Spiner loader={loader} />
-          <h2 className="section-title">Enter sit Details </h2>
+          <h2 className="section-title">Enter seat Details </h2>
           <p>{genericErrors}</p>
           {id ? (
             <span className="text-right">

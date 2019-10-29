@@ -34,7 +34,7 @@ class User extends Component {
         <UserNavbar username={username} />
         <Hero />
         <Switch>
-          <UserRoute path="/user" exact component={UserHome} />
+          <UserRoute path="/user" exact component={UserMenuCards} />
           <UserRoute path="/user/meal/:id" component={MenuDetailsUser} />
           <UserRoute path="/user/notice/:id" component={NoticeDetails} />
           <UserRoute path="/user/notice" component={UserNotice} />

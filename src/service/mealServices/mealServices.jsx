@@ -34,3 +34,7 @@ export function ExtraMeal(data) {
 export function MealCount() {
   return http.get(apiEndpoint + "/api/meal/meals");
 }
+
+export function GetMealTokens() {
+  return http.get(apiEndpoint + "/api/mealTokens");
+}

@@ -71,11 +71,13 @@ class Modal extends Component {
                             className="user-notice_title"
                           >
                             "
-                            {n.notice.title
-                              .split(" ")
-                              .slice(0, 2)
-                              .join(" ")}
-                            "{" "}
+                            {
+                              n.notice.title
+                              // .split(" ")
+                              // .slice(0, 3)
+                              // .join(" ")
+                            }
+                            "
                           </Link>{" "}
                           was titled{" "}
                           <Link
@@ -115,10 +117,12 @@ class Modal extends Component {
                             to={"/user/notice/" + n.notice.id}
                           >
                             "
-                            {n.notice.title
-                              .split(" ")
-                              .slice(0, 2)
-                              .join(" ")}
+                            {
+                              n.notice.title
+                              // .split(" ")
+                              // .slice(0, 2)
+                              // .join(" ")
+                            }
                             "{" "}
                           </Link>{" "}
                           was titled{" "}

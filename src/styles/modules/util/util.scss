@@ -156,6 +156,17 @@ th {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 4px;
+
+  &-bg {
+    font-size: 3rem !important;
+    font-weight: 200 !important;
+    padding-bottom: 5rem;
+    word-spacing: 10px;
+  }
+
+  &-noborder {
+    border: none;
+  }
 }
 
 .noticeBtn {
@@ -197,4 +208,8 @@ th {
       color: #385898;
     }
   }
+}
+
+.padding-bottom-lg {
+  padding-bottom: 10rem !important;
 }

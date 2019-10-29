@@ -23,6 +23,7 @@ import ElectricBill from "./sit/electricBill/electricBill";
 import MonthlyBill from "./monthlyBill/monthlyBill";
 import ChangePasswordAdmin from "./../common/changePassword/changePasswordAdmin";
 import { AddStudentMonthlyBills } from "../../service/monthlyBillService/monthlyBillService";
+import MealTokens from "./mealTokens/mealTokes";
 
 class Admin extends Component {
   state = {};
@@ -30,7 +31,7 @@ class Admin extends Component {
     const d = new Date();
     const date = d.getDate();
     if (date === 1) {
-      await AddStudentMonthlyBills();
+      // await AddStudentMonthlyBills();
     }
   }
   render() {
@@ -48,6 +49,7 @@ class Admin extends Component {
             <Route path="/admin/addfood/:id" component={FoodIteFrom} />
             <Route path="/admin/addfood" component={FoodIteFrom} />
             <Route path="/admin/food" component={FoodItemTable} />
+            <Route path="/admin/mealtoken" component={MealTokens} />
             <Route path="/admin/foodmenu/:id" exact component={MenuDetails} />
             <Route path="/admin/foodmenu" component={FoodMenu} />
             <Route path="/admin/addmenu/:id" component={FoodMenuForm} />

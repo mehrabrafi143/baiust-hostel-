@@ -1,0 +1,73 @@
+.generic-card {
+  width: 35rem;
+  background-color: #fff;
+  box-shadow: 2px 1px 15px 0 rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem 1rem 1rem;
+  border-radius: 5px;
+  transition: 0.5s ease-in;
+
+  &--lg {
+    width: 45rem;
+  }
+
+  &:hover {
+    background-color: #438cda;
+    color: #fff;
+    animation: bgChange 2s;
+    transform: scale(1.1);
+    .generic-card__title {
+      color: #fff;
+    }
+  }
+  &__title {
+    padding: 1rem 0 2rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 2rem;
+    word-spacing: 3px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #7ca5f8;
+  }
+
+  &__body {
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: 200;
+    word-spacing: 5px;
+    letter-spacing: 3px;
+    text-transform: capitalize;
+    p {
+      padding-top: 2rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+@keyframes bgChange {
+  0% {
+    background: #fff;
+    &__title {
+      color: #fff;
+    }
+  }
+
+  30% {
+    background: #479cf8;
+    color: #fff;
+  }
+
+  60% {
+    background-color: #2e79ca;
+    columns: #ddd;
+  }
+
+  80% {
+    background-color: #438cda;
+    color: #fff;
+  }
+
+  100% {
+    background-color: #0069d9;
+    color: #fff;
+  }
+}

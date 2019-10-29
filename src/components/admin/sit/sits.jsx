@@ -13,7 +13,7 @@ import Gender from "./../gender/gender";
 class Sits extends Component {
   state = {
     data: [],
-    pageSize: 8,
+    pageSize: 12,
     currentPage: 1,
     currentOrder: {
       name: "name",
@@ -59,7 +59,12 @@ class Sits extends Component {
     const { genderId: oldId } = this.state;
     if (oldId !== currentTarget["value"]) {
       const { data } = await GetSitByGender(currentTarget["value"]);
-      if (data) this.setState({ data, genderId: currentTarget["value"] });
+      if (data)
+        this.setState({
+          data,
+          genderId: currentTarget["value"],
+          currentPage: 1
+        });
     }
   };
 
@@ -135,7 +140,7 @@ class Sits extends Component {
       <div className="white-section">
         <div className="enter-padding">
           <Spiner loader={loader} />
-          <h2 className="section-title">Sit information</h2>
+          <h2 className="section-title">Seat information</h2>
           <SearchBox onQuery={this.handelQuery} query={query} />
           <Gender hadelGenderChange={this.hadelGenderChange} />
           <Table

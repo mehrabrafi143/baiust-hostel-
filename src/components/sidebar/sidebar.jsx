@@ -15,7 +15,7 @@ class Sidebar extends Component {
       },
       {
         name: "Account Information",
-        icon: "fa fa-info fa-lg",
+        icon: "fa fa-money fa-lg",
         child: [
           {
             name: "Informations",
@@ -77,18 +77,33 @@ class Sidebar extends Component {
         iconClasses: "fa fa-sort-desc text-right-icon"
       },
       {
-        name: "Site Management",
+        name: "Seat Management",
         icon: "fa fa-building fa-lg",
         child: [
           {
-            name: "Sit Informations",
+            name: "Seat information",
             to: "/admin/sits",
             icon: "fa fa-map"
           },
-          { name: "Add Sit", to: "/admin/sitsform", icon: "fa fa-plus-circle" }
+          { name: "Add Seat", to: "/admin/sitsform", icon: "fa fa-plus-circle" }
         ],
         show: false,
         to: "/admin/sits",
+        iconClasses: "fa fa-sort-desc text-right-icon"
+      },
+      {
+        name: "Notices & Tokens",
+        icon: "fa fa-file-text fa-lg",
+        child: [
+          {
+            name: "Tokens",
+            to: "/admin/mealtoken",
+            icon: "fa fa-key"
+          },
+          { name: "Notices", to: "/admin/notice", icon: "fa fa-sticky-note" }
+        ],
+        show: false,
+        to: "/admin/mealtoken",
         iconClasses: "fa fa-sort-desc text-right-icon"
       }
     ]

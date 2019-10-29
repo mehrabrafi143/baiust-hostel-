@@ -32,36 +32,60 @@ class Account extends Component {
     const { totalMealPrice, loader, totalDeu, totalPaid } = this.state;
 
     return (
-      <div className="white-section">
-        <div className="enter-padding">
-          <h1 className="section-title">In Total Information</h1>
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">Total Due Amount</div>
-              <p>{totalDeu}</p>
-            </li>
-            <li>
-              <div className="section-title">Total Paid Amout</div>
-              <p>{totalPaid}</p>
-            </li>
-          </ul>
-          <h1 className="section-title margin-top-lg">
-            Today's Meal Overall Price
-          </h1>
-          <ul className="dashboard-section">
-            <li>
-              <div className="section-title">Today's Total Meal Price</div>
-              <p>{totalMealPrice[0]}</p>
-            </li>
-            <li>
-              <div className="section-title">
-                Today's Total Extra Meal PRice
+      <React.Fragment>
+        <Spiner loader={loader} />
+        <div className=" tranparent enter-padding-lg">
+          <div className=" row">
+            <div className="section-top-title">
+              {" "}
+              <i className="fa fa-money"></i> Account
+            </div>
+            <div className="col-6">
+              <div className="generic-card generic-card--lg">
+                <div className="generic-card__title">Total Due Amount </div>
+                <div className="generic-card__body">
+                  {totalDeu}
+                  <p>Taka Only</p>
+                </div>
               </div>
-              <p>{totalMealPrice[1]}</p>
-            </li>
-          </ul>
+            </div>
+            <div className="col-6">
+              <div className="generic-card generic-card--lg">
+                <div className="generic-card__title">Total Paid Amout</div>
+                <div className="generic-card__body">
+                  {totalPaid}
+                  <p>Seats in total</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="tranparent row  mt-5">
+            <div className="col-6">
+              <div className="generic-card generic-card--lg">
+                <div className="generic-card__title">
+                  Today's Meal Overall Price
+                </div>
+                <div className="generic-card__body">
+                  {totalMealPrice[0]}
+                  <p>Seats in total</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="generic-card generic-card--lg">
+                <div className="generic-card__title">
+                  Today's Total Extra Meal Price
+                </div>
+                <div className="generic-card__body">
+                  {totalMealPrice[1]}
+                  <p> In total</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
